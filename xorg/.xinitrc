@@ -48,4 +48,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-exec xmonad
+# xrandr --output HDMI-1 --same-as eDP-1 &
+# nitrogen --restore &
+# picom &
+# thunar --daemon &
+# light-locker --no-lock-on-lid &
+# dwmblocks &
+# trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --transparent true --alpha 0 --tint 0x282c34  --height 20 &
+exec dwm
+# exec /home/toxicfs/Desktop/Rust/wm/target/release/wm
