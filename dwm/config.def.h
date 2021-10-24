@@ -87,30 +87,13 @@ static Key keys[] = {
     { MODKEY,                       XK_b,      spawn,          {.v = browser } },
     { MODKEY|ShiftMask,             XK_b,      spawn,          SHCMD("chromium -incognito" ) },
     { MODKEY,                       XK_z,      spawn,          SHCMD("zathura") },
+    { MODKEY,                       XK_a,      spawn,          SHCMD("aseprite") },
     { MODKEY,                       XK_f,      spawn,          SHCMD("thunar") },
     { MODKEY|ShiftMask,             XK_d,      spawn,          SHCMD("discord") },
-    { MODKEY|ShiftMask,             XK_q,      spawn,          SHCMD("dunstify lol 'you suck aaden' && mpv /home/toxicfs/Videos/Science_of_Wellbeing.mkv") },
-    /* { MODKEY,                       XK_F10,    spawn,          SHCMD("pamixer -t && notify-send 'Volume Toggled' 'Muted: $(pamixer --get-mute)'") }, */
-    /* { MODKEY,                       XK_F11,    spawn,          SHCMD("pamixer -d 5 && notify-send 'Volume Decreased' 'Volume: $(pamixer --get-volume)'") }, */
-    /* { MODKEY,                       XK_F12,    spawn,          SHCMD("pamixer -i 5 && notify-send 'Volume Increased' 'Volume: $(pamixer --get-volume)'") }, */
-    /* Implemented in sxhkd */
-    /* { Mod1Mask|ShiftMask,           XK_c,      spawn,          SHCMD("rofi -show calc -modi calc -no-show-match -no-sort") }, */
-    /* { Mod1Mask|ShiftMask,           XK_f,      spawn,          SHCMD("fd . $HOME | rofi -keep-right -dmenu -i -p FILES -multi-select | xargs -I {} xdg-open {}") }, */
-    /* { Mod1Mask|ShiftMask,           XK_s,      spawn,          SHCMD("dm-websearch") }, */
-    /* { Mod1Mask|ShiftMask,           XK_e,      spawn,          SHCMD("dm-confedit") }, */
-    /* { Mod1Mask|ShiftMask,           XK_m,      spawn,          SHCMD("dm-man") }, */
-    /* { Mod1Mask|ShiftMask,           XK_k,      spawn,          SHCMD("dm-kill") }, */
     { MODKEY,                       XK_q,      spawn,          SHCMD("dm-logout") },
     { MODKEY,                       XF86XK_Launch1,            spawn,          SHCMD("dm-logout") },
-    /* { 0,                            XF86XK_AudioMute,          spawn,          SHCMD("pamixer -t && notify-send 'Volume Toggled' 'Muted: $(pamixer --get-mute)'") }, */
-    /* { 0,                            XF86XK_AudioLowerVolume,   spawn,          SHCMD("pamixer -d 5 && notify-send 'Volume Decreased' 'Volume: $(pamixer --get-volume)'") }, */
-    /* { 0,                            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("pamixer -i 5 && notify-send 'Volume Increased' 'Volume: $(pamixer --get-volume)'") }, */
-    /* { ShiftMask,                    XF86XK_AudioLowerVolume,   spawn,          SHCMD("brightnessctl s 10%- && notify-send 'Brightness Decreased'") }, */
-    /* { ShiftMask,                    XF86XK_AudioRaiseVolume,   spawn,          SHCMD("brightnessctl s +10% && notify-send 'Brightness Increased'") }, */
-    /* { ShiftMask,                    XF86XK_AudioLowerVolume,   spawn,          SHCMD("brightnessctl s 10%- && notify-send 'Brightness Decreased'") }, */
-    /* { ShiftMask,                    XF86XK_AudioRaiseVolume,   spawn,          SHCMD("brightnessctl s +10% && notify-send 'Brightness Increased'") }, */
     { 0,                            XK_Print,  spawn,          SHCMD("maim -s --hidecursor | xclip -selection clipboard -t image/png -i && notify-send 'Screenshot captured' 'Screenshot of region captured to clipboard'") },
-    { ShiftMask,                    XK_Print,  spawn,          SHCMD("maim --hidecursor | xclip -selection clipboard -t image/png -i && notify-send 'Screenshot captured' 'Screenshot of region captured to clipboard'") },
+    { ShiftMask,                    XK_Print,  spawn,          SHCMD("maim --hidecursor | xclip -selection clipboard -t image/png -i && notify-send 'Screenshot captured' 'Screenshot of screen captured to clipboard'") },
     { ControlMask,                  XK_Print,  spawn,          SHCMD("dm-maim") },
     { MODKEY|Mod1Mask,              XK_p,      spawn,          SHCMD("gpick -p") },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -148,7 +131,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	/* { MODKEY|ShiftMask,             XK_q,      quit,           {0} }, */
+	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	{ MODKEY|ShiftMask,             XK_r,      quit,           {1} }, 
 };
 
