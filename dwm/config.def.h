@@ -74,7 +74,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", NULL };
-static const char *termcmd[]  = { "kitty", "-e", "fish" };
+static const char *termcmd[]  = { "st", "-e", "fish" };
 static const char *browser[]  = { "chromium", NULL };
 
 #include "movestack.c"
@@ -82,7 +82,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_v,      spawn,          SHCMD("kitty -e nvim") },
+	{ MODKEY,                       XK_v,      spawn,          SHCMD("st -e nvim") },
 	{ MODKEY,                       XK_e,      spawn,          SHCMD("emacsclient -c -a emacs") },
 	{ MODKEY|ShiftMask,             XK_v,      spawn,          SHCMD("code-insiders") },
     { Mod1Mask,                     XK_space,  spawn,          SHCMD("rofi -show combi") },

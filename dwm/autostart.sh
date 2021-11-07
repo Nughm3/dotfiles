@@ -5,7 +5,6 @@ killall picom &
 killall sxhkd &
 killall noisetorch &
 killall pasystray &
-emacs --daemon &
 discord &
 asusctl -c 96 &
 picom &
@@ -18,3 +17,4 @@ noisetorch -i 95
 pasystray &
 play-with-mpv &
 dwmblocks &
+/usr/bin/emacs --daemon
