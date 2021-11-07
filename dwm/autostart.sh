@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-kill dwmblocks &
-kill picom &
-kill sxhkd &
-kill noisetorch &
-killall pasystray &
 xrandr --output HDMI-1 --same-as eDP-1 &
+killall dwmblocks &
+killall picom &
+killall sxhkd &
+killall noisetorch &
+killall pasystray &
+emacs --daemon &
+discord &
 asusctl -c 96 &
 picom &
 nitrogen --restore &

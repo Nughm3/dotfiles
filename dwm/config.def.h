@@ -41,6 +41,7 @@ static const Rule rules[] = {
     { "Gimp",     NULL,       NULL,       0,            1,           1,           -1 },
 	{ "Firefox",  NULL,       NULL,       0,            0,           0,           -1 },
 	{ "trayer",   NULL,       NULL,       0,            0,           1,           -1 },
+	{ "discord",  NULL,       NULL,       1 << 8,       0,           0,           -1 },
 };
 
 /* layout(s) */
@@ -82,6 +83,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_v,      spawn,          SHCMD("kitty -e nvim") },
+	{ MODKEY,                       XK_e,      spawn,          SHCMD("emacsclient -c -a emacs") },
 	{ MODKEY|ShiftMask,             XK_v,      spawn,          SHCMD("code-insiders") },
     { Mod1Mask,                     XK_space,  spawn,          SHCMD("rofi -show combi") },
     { MODKEY,                       XK_b,      spawn,          {.v = browser } },
@@ -114,8 +116,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  togglefullscr,  {0} },
 	{ MODKEY|ShiftMask,             XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY,                       XK_0,      tag,            {.ui = ~0 } },
+	/* { MODKEY|ShiftMask,             XK_0,      view,           {.ui = ~0 } }, */
+	/* { MODKEY,                       XK_0,      tag,            {.ui = ~0 } }, */
 	{ MODKEY,                       XK_bracketleft,            viewtoleft,     {0} },
 	{ MODKEY,                       XK_bracketright,           viewtoright,    {0} },
 	{ MODKEY|ShiftMask,             XK_bracketleft,            tagtoleft,      {0} },
