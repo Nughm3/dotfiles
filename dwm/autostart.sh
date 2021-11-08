@@ -15,6 +15,5 @@ light-locker &
 thunar --daemon &
 noisetorch -i 95
 pasystray &
-play-with-mpv &
 dwmblocks &
 /usr/bin/emacs --daemon

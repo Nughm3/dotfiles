@@ -96,6 +96,7 @@ static Key keys[] = {
     { MODKEY,                       XF86XK_Launch1,            spawn,          SHCMD("dm-logout") },
     { 0,                            XK_Print,  spawn,          SHCMD("maim -s --hidecursor | xclip -selection clipboard -t image/png -i && notify-send 'Screenshot captured' 'Screenshot of region captured to clipboard'") },
     { ShiftMask,                    XK_Print,  spawn,          SHCMD("maim --hidecursor | xclip -selection clipboard -t image/png -i && notify-send 'Screenshot captured' 'Screenshot of screen captured to clipboard'") },
+    { Mod1Mask,                     XK_Print,  spawn,          SHCMD("/home/toxicfs/.config/freeze_shot.sh") },
     { ControlMask,                  XK_Print,  spawn,          SHCMD("dm-maim") },
     { MODKEY|Mod1Mask,              XK_p,      spawn,          SHCMD("gpick -p") },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
