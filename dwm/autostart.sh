@@ -9,6 +9,7 @@ discord &
 asusctl -c 96 &
 picom &
 nitrogen --restore &
+pulseaudio --start &
 # nitrogen --no-recurse --random --set-scaled /usr/share/backgrounds/ &
 sxhkd &
 light-locker &

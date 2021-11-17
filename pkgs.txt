@@ -6,7 +6,6 @@ acpi
 adobe-source-han-sans-cn-fonts
 adobe-source-han-sans-jp-fonts
 adobe-source-serif-fonts
-adwaita-icon-theme
 alacritty-ligatures-git
 alembic
 alsa-card-profiles
@@ -24,7 +23,6 @@ arc-icon-theme
 arch-wiki-docs
 arch-wiki-lite
 archlinux-keyring
-ardour
 argon2
 aseprite-skia-bin
 asusctl-git
@@ -138,13 +136,11 @@ efivar
 egl-wayland
 eglexternalplatform
 elfutils
-elixir
 ell
 emacs
 emacs-dash
 embree
 enchant
-erlang-nox
 evince
 evtest
 exa

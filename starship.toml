@@ -69,3 +69,12 @@ symbol = " "
 
 [swift]
 symbol = "ﯣ "
+
+[custom.haskell]
+symbol = " "
+description = "Shows the global GHC version."
+command = "ghc --numeric-version"
+files = ["stack.yaml"]
+extensions = ["cabal"]
+format = "via [$symbol($output)]($style)"
+style = "purple"
