@@ -1,0 +1,7 @@
+[user]
+	email = manhei5001@gmail.com
+	name = Isaac Hung
+[alias]
+	st = status
+	cm = commit -am
+	lg = log --oneline --full-diff --graph
