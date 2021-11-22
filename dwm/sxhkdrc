@@ -30,6 +30,11 @@ XF86AudioLowerVolume
 XF86AudioRaiseVolume
     pamixer -u && pamixer -i 5 && notify-send "Volume Increased ($(pamixer --get-volume))"
 
+shift + XF86AudioLowerVolume
+    brightnessctl s 10%-
+shift + XF86AudioRaiseVolume
+    brightnessctl s 10%+
+
 super + F10
     pamixer -t && notify-send "Volume Toggled (Muted: $(pamixer --get-mute))"
 super + F11
