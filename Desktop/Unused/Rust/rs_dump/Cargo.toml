@@ -1,0 +1,10 @@
+[package]
+name = "rs-syntax"
+version = "0.0.0"
+authors = ["David Tolnay <dtolnay@gmail.com>"]
+edition = "2021"
+
+[dependencies]
+colored = "1.7"
+proc-macro2 = { version = "1.0", features = ["span-locations"] }
+syn = { version = "1.0.82", default-features = false, features = ["parsing", "full", "extra-traits"] }

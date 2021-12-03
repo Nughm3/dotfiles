@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "l73qxatnDBhLb07zg99wBHDwJttaQm0Cr9+UaKszW3UxMd9CH9VA/WHR1rq2sxJaoDgCpVr8Ggzb/wgPGf9s4Q==",
+  "success": true,
+  "projectFilePath": "/home/toxicfs/Desktop/F#/HelloWorld/HelloWorld.fsproj",
+  "expectedPackageFiles": [
+    "/home/toxicfs/.nuget/packages/fsharp.core/6.0.1/fsharp.core.6.0.1.nupkg.sha512",
+    "/home/toxicfs/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.0/microsoft.aspnetcore.app.ref.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

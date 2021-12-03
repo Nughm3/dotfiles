@@ -1,0 +1,12 @@
+[package]
+name = "tracetables"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+proc-macro2 = "1.0.32"
+syn = {version = "1.0.82", features = ["full", "fold"]}
+quote = "1.0.10"
+
+[lib]
+proc-macro = true
