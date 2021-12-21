@@ -1,12 +1,8 @@
 [alias]
-br = "lbuild --release"
-rr = "lrun --release"
+br = "build --release"
+rr = "run --release"
 pkgup = "install-update -a"
 feat = "feature"
-b = "lbuild"
-r = "lrun"
-c = "lcheck"
-t = "ltest"
 
 [build]
-rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]
