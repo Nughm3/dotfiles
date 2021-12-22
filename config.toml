@@ -5,4 +5,4 @@ pkgup = "install-update -a"
 feat = "feature"
 
 [build]
-rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+rustflags = ["-C", "link-arg=-fuse-ld=lld"]
