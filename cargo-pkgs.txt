@@ -1,0 +1,15 @@
+cargo-edit
+cargo-audit
+cargo-cache
+cargo-clean-recursive
+cargo-clone
+cargo-expand
+cargo-feature
+cargo-geiger
+cargo-generate
+cargo-hack
+cargo-install-update
+cargo-make
+cargo-udeps
+cargo-upgrade
+cargo-watch
