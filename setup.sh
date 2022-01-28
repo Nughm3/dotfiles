@@ -5,7 +5,7 @@ cp -r dunst ~/.config/
 cp -r picom ~/.config/
 cp -r rofi ~/.config/
 cp starship.toml ~/.config/
-cp shell/config.fish ~/.config/fish/
+cp config.fish ~/.config/fish/
 cp zathurarc ~/.config/zathura/
 cp gitconfig ~/.gitconfig
 
