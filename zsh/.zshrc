@@ -106,13 +106,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+source /home/i32/.zsh-syntax/zsh-syntax-highlighting.zsh
+
 alias ls="exa --icons --git"
 alias la="exa -la --icons --git"
 alias cat="bat"
 alias fd="fd -H"
-alias tree="exa -T"
 alias op="fzf | xargs nvim"
-alias reload="source ~/.zshrc"
+alias reload="clear && source ~/.zshrc"
 alias sv="doas sv"
 alias cp="cp -r"
 alias rf="rm -rfi"
@@ -121,8 +122,13 @@ export SUDO_EDITOR=nvim
 export EDITOR=nvim
 export PATH="$PATH:/home/i32/.local/bin:/home/i32/.cargo/bin"
 
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;2C" forward-word
+bindkey "^[[1;2D" backward-word
+
 theme.sh onedark
 pfetch
 autopair-init
 eval "$(zoxide init zsh)"
-source /home/i32/.zsh-syntax/zsh-syntax-highlighting.zsh
+# eval "$(starship init zsh)"
