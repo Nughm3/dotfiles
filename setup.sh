@@ -9,5 +9,6 @@ cp -r rofi ~/.config/
 #cp config.fish ~/.config/fish/
 cp zathurarc ~/.config/zathura/
 cp gitconfig ~/.gitconfig
+cp xinitrc ~/.xinitrc
 
 echo "Finished."

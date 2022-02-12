@@ -3,8 +3,5 @@ nitrogen --restore &
 pulseaudio --daemonize &
 picom --daemon &
 sxhkd &
-dwmblocks &
-# nm-applet &
-# pasystray &
-noisetorch -i & 
+~/.local/bin/blocks.sh &
 exec dwm
