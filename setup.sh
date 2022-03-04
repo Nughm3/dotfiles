@@ -10,5 +10,6 @@ cp -r rofi ~/.config/
 cp zathurarc ~/.config/zathura/
 cp gitconfig ~/.gitconfig
 cp xinitrc ~/.xinitrc
+cp zsh/* ~
 
 echo "Finished."

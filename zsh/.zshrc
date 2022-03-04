@@ -76,6 +76,10 @@ plugins=(battery colored-man-pages colorize command-not-found docker fzf fd git 
 # Plugin configuration
 bindkey -M emacs '^[s' sudo-command-line
 
+if [[ ! -d ~/.zsh-autopair ]]; then
+  git clone https://github.com/hlissner/zsh-autopair ~/.zsh-autopair
+fi
+
 source ~/.zsh-autopair/autopair.zsh
 
 source $ZSH/oh-my-zsh.sh
@@ -114,7 +118,6 @@ alias cat="bat"
 alias fd="fd -H"
 alias op="fzf | xargs nvim"
 alias reload="clear && source ~/.zshrc"
-alias sv="doas sv"
 alias cp="cp -r"
 alias rf="rm -rfi"
 
@@ -127,8 +130,9 @@ bindkey "^[[1;5D" backward-word
 bindkey "^[[1;2C" forward-word
 bindkey "^[[1;2D" backward-word
 
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+
 theme.sh onedark
 pfetch
 autopair-init
 eval "$(zoxide init zsh)"
-# eval "$(starship init zsh)"

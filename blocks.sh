@@ -24,7 +24,7 @@ while true; do
     elif [ "$icon" = "battery-low-symbolic" ] || [ "$icon" = "battery-low-charging-symbolic" ]; then
         bat="  $level $stats $time"
     else
-        bat="  $level $stats $time"
+        bat="  $level $stats $time"
     fi
     xsetroot -name "$bat >> $date"
     sleep 1
