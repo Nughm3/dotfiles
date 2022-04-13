@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="afowler"
+# ZSH_THEME="afowler"
 # ZSH_THEME="agnoster"
 
 # Set list of themes to pick from when loading at random
@@ -30,7 +30,7 @@ ZSH_THEME="afowler"
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-zstyle ':omz:update' frequency 7
+# zstyle ':omz:update' frequency 7
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -71,7 +71,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(battery colored-man-pages colorize command-not-found docker fzf fd git history-substring-search python ripgrep rsync rust sudo zoxide)
+plugins=(colorize command-not-found fzf fd git history-substring-search python ripgrep rust sudo zoxide)
 
 # Plugin configuration
 bindkey -M emacs '^[s' sudo-command-line
@@ -119,11 +119,12 @@ alias fd="fd -H"
 alias op="fzf | xargs nvim"
 alias reload="clear && source ~/.zshrc"
 alias cp="cp -r"
-alias rf="rm -rfi"
 
 export SUDO_EDITOR=nvim
 export EDITOR=nvim
-export PATH="$PATH:/home/i32/.local/bin:/home/i32/.cargo/bin"
+export MANPAGER=bat
+export PATH="$PATH:/home/i32/.local/bin:/home/i32/.cargo/bin:/home/i32/.ghcup/bin"
+alias e="$EDITOR"
 
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word

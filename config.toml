@@ -2,6 +2,12 @@
 br = "build --release"
 rr = "run --release"
 pkgup = "install-update -a"
+nt = "nextest run"
+c = "clippy"
+cl = "clean"
+cc = "cache -a"
+cr = "clean-recursive"
 
-[build]
-rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+# [build]
+# rustc-wrapper = "/home/i32/.cargo/bin/sccache"
+# rustflags = ["-C", "link-arg=-fuse-ld=lld"]
