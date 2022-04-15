@@ -7,13 +7,12 @@ cargo-clone
 cargo-expand
 cargo-feature
 cargo-geiger
-cargo-generate
-cargo-hack
-cargo-install-update
-cargo-make
+cargo-update
 cargo-nextest
 cargo-udeps
+cargo-outdated
+cargo-bloat
+cargo-feature-set
 cargo-watch
 oha
-sccache
 trunk

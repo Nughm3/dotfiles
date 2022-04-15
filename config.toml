@@ -9,5 +9,5 @@ cc = "cache -a"
 cr = "clean-recursive"
 
 # [build]
-# rustc-wrapper = "/home/i32/.cargo/bin/sccache"
+# rustc-wrapper = "sccache"
 # rustflags = ["-C", "link-arg=-fuse-ld=lld"]
