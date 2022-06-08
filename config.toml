@@ -1,13 +1,18 @@
 [alias]
+# Building
+c = "clippy"
 br = "build --release"
 rr = "run --release"
-pkgup = "install-update -a"
 nt = "nextest run"
-c = "clippy"
+# Packages
+ft = "feature"
+tr = "tree"
+pkgup = "install-update -a"
+# Cleaning
 cl = "clean"
-cc = "cache -a"
 cr = "clean-recursive"
+cc = "cache -a"
 
-# [build]
-# rustc-wrapper = "sccache"
-# rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+[build]
+rustc-wrapper = "sccache"
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]

@@ -3,45 +3,45 @@
 	name = Isaac Hung
 
 [alias]
-	st = status
-	cm = commit -am
-	ca = commit --amend --no-edit
-	lg = log --oneline --full-diff --graph
-	co = checkout
-    ps = push
-    pl = pull
+  #st = status -sb
+  st = status
+  cm = commit -am
+  ca = commit --amend --no-edit
+  lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset' --abbrev-commit --date=relative
+  co = checkout
+  ps = push
+  pl = pull
+  df = diff
+  root = rev-parse --show-toplevel
 
 [credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+  helper = 
+  helper = !/usr/bin/gh auth git-credential
 
 [pull]
-	rebase = false
+  rebase = true
 
 [core]
-    pager = delta
+  pager = delta -s
 
 [interactive]
-    diffFilter = delta --color-only
+  diffFilter = delta --color-only
 
 [delta]
-    features = decorations
-    navigate = true
-    line-numbers = true
-
-[delta "decorations"]
-    commit-decoration-style = bold blue box ul
-    file-style = bold yellow ul
-    file-decoration-style = none
-    hunk-header-decoration-style = red box
+  navigate = true
+  line-numbers = true
 
 [merge]
-    conflictstyle = diff3
+  conflictstyle = diff3
 
 [diff]
-    colorMoved = default
+  colorMoved = default
+
 [init]
-	defaultBranch = master
+  defaultBranch = master
+
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+  helper = !/usr/bin/gh auth git-credential
+
+[color]
+  ui = 1

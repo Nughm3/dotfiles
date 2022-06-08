@@ -1,6 +1,13 @@
 [aws]
 symbol = "  "
 
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+style = "bold blue"
+
 [conda]
 symbol = " "
 
@@ -25,6 +32,9 @@ symbol = " "
 [golang]
 symbol = " "
 
+[haskell]
+symbol = " "
+
 [hg_branch]
 symbol = " "
 
@@ -33,9 +43,6 @@ symbol = " "
 
 [julia]
 symbol = " "
-
-[lua]
-symbol = " "
 
 [memory_usage]
 symbol = " "
@@ -46,38 +53,17 @@ symbol = " "
 [nix_shell]
 symbol = " "
 
+[nodejs]
+symbol = " "
+
 [package]
 symbol = " "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
-
-[python]
-symbol = " "
-
-[ruby]
-symbol = " "
 
 [rust]
 symbol = " "
 
-[scala]
-symbol = " "
+[python]
+symbol = " "
 
-[shlvl]
-symbol = " "
-
-[swift]
-symbol = "ﯣ "
-
-[custom.haskell]
-symbol = " "
-description = "Shows the global GHC version."
-command = "ghc --numeric-version"
-files = ["stack.yaml"]
-extensions = ["cabal"]
-format = "via [$symbol($output)]($style) "
-style = "purple"
+[perl]
+disabled = true
