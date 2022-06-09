@@ -7,7 +7,7 @@ cp -r rofi ~/.config/
 cp zathurarc ~/.config/zathura/
 cp gitconfig ~/.gitconfig
 cp xinitrc ~/.xinitrc
-cp zsh/* ~
+# cp zsh/* ~
 cp config.toml ~/.cargo/
 
 echo "Finished."
