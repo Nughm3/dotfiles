@@ -1,4 +1,4 @@
-bore
+bore-cli
 cargo-audit
 cargo-bloat
 cargo-cache
