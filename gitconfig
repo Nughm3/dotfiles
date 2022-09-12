@@ -22,26 +22,15 @@
   rebase = true
 
 [core]
-  pager = delta -s
-
-[interactive]
-  diffFilter = delta --color-only
+  pager = delta
 
 [delta]
   navigate = true
   line-numbers = true
-
-[merge]
-  conflictstyle = diff3
-
-[diff]
-  colorMoved = default
+  side-by-side = true
 
 [init]
   defaultBranch = master
 
 [credential "https://gist.github.com"]
   helper = !/usr/bin/gh auth git-credential
-
-[color]
-  ui = 1

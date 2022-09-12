@@ -4,15 +4,14 @@ c = "clippy"
 br = "build --release"
 rr = "run --release"
 nt = "nextest run"
+w = "watch -c"
 # Packages
+up = "upgrade"
 ft = "feature"
 tr = "tree"
+ls = "tree --depth 1"
 pkgup = "install-update -a"
 # Cleaning
 cl = "clean"
 cr = "clean-recursive"
 cc = "cache -a"
-
-[build]
-rustc-wrapper = "sccache"
-rustflags = ["-C", "link-arg=-fuse-ld=mold"]

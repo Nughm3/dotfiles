@@ -1,7 +1,13 @@
 #!/bin/sh
 
-super + p; c
-    rofi -show calc
+super + b
+    firefox
+        
+super + shift + b
+    firefox --private-window
+
+super + shift + d
+    Discord
 
 XF86AudioMute
     pamixer -t && notify-send "Volume Toggled (Muted: $(pamixer --get-mute))"
@@ -15,9 +21,8 @@ shift + XF86AudioLowerVolume
 shift + XF86AudioRaiseVolume
     brightnessctl s 10%+
 
-super + F10
-    pamixer -t && notify-send "Volume Toggled (Muted: $(pamixer --get-mute))"
-super + F11
-    pamixer -u && pamixer -d 5 && notify-send "Volume Decreased ($(pamixer --get-volume))"
-super + F12
-    pamixer -u && pamixer -i 5 && notify-send "Volume Increased ($(pamixer --get-volume))"
+Print
+    maim -s | xclip -selection clipboard -t image/png -i
+
+shift + Print
+    maim | xclip -selection clipboard -t image/png -i

@@ -1,0 +1,22 @@
+theme = "onedark"
+
+[editor]
+scrolloff = 4
+middle-click-paste = false
+line-number = "relative"
+completion-trigger-len = 1
+true-color = true
+
+[editor.cursor-shape]
+insert = "bar"
+
+[keys.normal]
+C-s = ":w"
+C-q = ":qa"
+tab = ":bn"
+S-tab = ":bp"
+space = { x = ":bc" }
+X = ["extend_line", "trim_selections"]
+C-w = { c = "wclose" }
+'{' = "goto_prev_paragraph"
+'}' = "goto_next_paragraph"
