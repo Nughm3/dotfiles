@@ -6,7 +6,7 @@ rr = "run --release"
 nt = "nextest run"
 w = "watch -c"
 # Packages
-up = "upgrade"
+up = "update"
 ft = "feature"
 tr = "tree"
 ls = "tree --depth 1"
@@ -15,3 +15,6 @@ pkgup = "install-update -a"
 cl = "clean"
 cr = "clean-recursive"
 cc = "cache -a"
+
+[build]
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]

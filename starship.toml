@@ -59,11 +59,11 @@ symbol = " "
 [package]
 symbol = " "
 
+[python]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
+
 [rust]
 symbol = " "
-
-[python]
-symbol = " "
-
-[perl]
-disabled = true

@@ -8,8 +8,6 @@ cp gitconfig ~/.gitconfig
 cp xinitrc ~/.xinitrc
 cp config.toml ~/.cargo/
 
-# cp zsh/* ~
-# cp -r rofi ~/.config/
-# cp -r dunst ~/.config/
+# ./cargo.sh
 
 echo "Finished."

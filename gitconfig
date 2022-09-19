@@ -3,7 +3,6 @@
 	name = Isaac Hung
 
 [alias]
-  #st = status -sb
   st = status
   cm = commit -am
   ca = commit --amend --no-edit
