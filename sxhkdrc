@@ -10,11 +10,11 @@ super + shift + d
     Discord
 
 XF86AudioMute
-    pamixer -t && notify-send "Volume Toggled (Muted: $(pamixer --get-mute))"
+    pamixer -t
 XF86AudioLowerVolume
-    pamixer -u && pamixer -d 5 && notify-send "Volume Decreased ($(pamixer --get-volume))"
+    pamixer -u && pamixer -d 5
 XF86AudioRaiseVolume
-    pamixer -u && pamixer -i 5 && notify-send "Volume Increased ($(pamixer --get-volume))"
+    pamixer -u && pamixer -i 5
 
 shift + XF86AudioLowerVolume
     brightnessctl s 10%-

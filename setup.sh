@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-mkdir -p ~/.config/zathura ~/.cargo
+mkdir -p ~/.cargo
 cp -r bat ~/.config/
 cp -r picom ~/.config/
-cp zathurarc ~/.config/zathura/
 cp gitconfig ~/.gitconfig
 cp xinitrc ~/.xinitrc
 cp config.toml ~/.cargo/
 
+# cp zathurarc ~/.config/zathura/
 # ./cargo.sh
 
 echo "Finished."
