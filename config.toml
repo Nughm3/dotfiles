@@ -8,6 +8,7 @@ w = "watch -c"
 # Packages
 up = "update"
 ft = "feature"
+mod = "modules generate"
 tr = "tree"
 ls = "tree --depth 1"
 pkgup = "install-update -a"
@@ -17,4 +18,4 @@ cr = "clean-recursive"
 cc = "cache -a"
 
 [build]
-rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+rustflags = ["-C", "link-arg=-fuse-ld=lld"]

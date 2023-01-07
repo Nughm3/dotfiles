@@ -1,22 +1,46 @@
 theme = "onedark"
 
 [editor]
-scrolloff = 4
 middle-click-paste = false
 line-number = "relative"
+cursorline = true
+idle-timeout = 0
 completion-trigger-len = 1
 true-color = true
+bufferline = "always"
+color-modes = true
+
+[editor.statusline]
+left = ["mode", "file-name"]
+right = ["diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "spinner", "file-type"]
 
 [editor.cursor-shape]
 insert = "bar"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+character = "╎"
 
 [keys.normal]
 C-s = ":w"
 C-q = ":qa"
 tab = ":bn"
 S-tab = ":bp"
-space = { x = ":bc" }
+space.x = ":bc"
+H = "goto_first_nonwhitespace"
+L = "goto_line_end"
 X = ["extend_line", "trim_selections"]
-C-w = { c = "wclose" }
-'{' = "goto_prev_paragraph"
-'}' = "goto_next_paragraph"
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+C-w.c = "wclose"
+C-h = "jump_view_left"
+C-j = "jump_view_down"
+C-k = "jump_view_up"
+C-l = "jump_view_right"
+
+[keys.insert]
+C-backspace = "delete_word_backward"
+C-del = "delete_word_forward"
