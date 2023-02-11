@@ -1,6 +1,8 @@
 theme = "onedark"
 
 [editor]
+scrolloff = 3
+scroll-lines = 4
 middle-click-paste = false
 line-number = "relative"
 cursorline = true
@@ -13,6 +15,7 @@ color-modes = true
 [editor.statusline]
 left = ["mode", "file-name"]
 right = ["diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "spinner", "file-type"]
+# mode = { normal = "NORMAL", insert = "INSERT", select = "SELECT" }
 
 [editor.cursor-shape]
 insert = "bar"

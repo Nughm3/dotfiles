@@ -33,7 +33,7 @@
     geometry = "300x50-40+0"
 
     # Turn on the progess bar
-    progress_bar = false
+    progress_bar = true
 
     # Set the progress bar height. This includes the frame, so make sure
     # it's at least twice as big as the frame width.

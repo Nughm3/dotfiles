@@ -9,3 +9,7 @@ auto-format = true
 [[language]]
 name = "svelte"
 auto-format = true
+
+[[language]]
+name = "astro"
+language-server = { command = "astro-ls", args = ["--stdio"] }

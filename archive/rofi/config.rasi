@@ -1,7 +1,0 @@
-configuration {
-    font: "JetBrainsMono Nerd Font 11";
-    modi: "window,run,ssh,drun,combi,windowcd,keys,calc,filebrowser";
-    combi-modi: "window,drun,run";
-}
-
-@theme "/usr/share/rofi/themes/Arc.rasi"

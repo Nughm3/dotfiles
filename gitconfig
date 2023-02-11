@@ -11,6 +11,7 @@
   ps = push
   pl = pull
   df = diff
+  dc = diff --cached
   root = rev-parse --show-toplevel
 
 [credential "https://github.com"]
@@ -22,6 +23,9 @@
 
 [push]
   autoSetupRemote = true
+
+# [diff]
+#   external = difft --skip-unchanged --tab-width 4
 
 [core]
   pager = delta
@@ -36,3 +40,8 @@
 
 [credential "https://gist.github.com"]
   helper = !/usr/bin/gh auth git-credential
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

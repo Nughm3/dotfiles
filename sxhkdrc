@@ -6,8 +6,14 @@ super + b
 super + shift + b
     firefox --private-window
 
+super + o
+    obsidian
+
 super + shift + d
     Discord
+
+super + shift + f
+    Thunar
 
 XF86AudioMute
     pamixer -t
