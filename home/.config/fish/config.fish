@@ -1,8 +1,12 @@
 #!/bin/fish
 
+# Arch Linux changes `hx` to `helix`
+alias hx="helix"
+
 set -g fish_greeting
 set -g ASTRO_TELEMETRY_DISABLE
 set -g EDITOR hx
+set -g PAGER bat
 
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
@@ -31,6 +35,7 @@ alias md="mkdir"
 
 alias fd="fd -H"
 alias py="python3 -q"
+alias pypy="pypy3 -q"
 
 if status is-interactive
     zoxide init fish | source

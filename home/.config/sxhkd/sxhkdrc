@@ -9,8 +9,14 @@ super + shift + b
 super + o
     obsidian
 
+super + a
+    aseprite
+
+super + z
+    zathura
+
 super + shift + d
-    Discord
+    discord
 
 super + shift + f
     Thunar

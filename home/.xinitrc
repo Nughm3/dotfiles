@@ -1,8 +1,10 @@
-xrandr --output HDMI-A-0 --same-as eDP &
+#!/bin/sh
+
+xrandr --output HDMI-1 --same-as eDP-1 &
 nitrogen --restore &
 
-pulseaudio --start &
 picom --daemon &
 sxhkd &
+dunst &
 
 exec dwm

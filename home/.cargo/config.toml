@@ -18,4 +18,5 @@ cr = "clean-recursive"
 cc = "cache -a"
 
 [build]
-rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+# rustflags = ["-C", "link-arg=-fuse-ld=lld"]
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]

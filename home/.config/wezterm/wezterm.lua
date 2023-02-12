@@ -4,7 +4,7 @@ return {
   color_scheme = "OneDark (base16)",
 
   font = wezterm.font("JetBrainsMono Nerd Font Mono"),
-  font_size = 10,
+  font_size = 10.5,
 
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
@@ -52,4 +52,6 @@ return {
       }
     },
   },
+
+  cursor_blink_rate = 0,
 }
