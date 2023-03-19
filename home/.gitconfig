@@ -6,7 +6,6 @@
   st = status
   cm = commit -am
   ca = commit --amend --no-edit
-  lg = log --all --graph --pretty=format:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)%an%Creset' --abbrev-commit --date=relative
   co = checkout
   ps = push
   pl = pull
@@ -15,8 +14,8 @@
   root = rev-parse --show-toplevel
 
 [credential "https://github.com"]
-  helper = 
-  helper = !/usr/bin/gh auth git-credential
+  helper =
+  helper = !/etc/profiles/per-user/isaac/bin/gh auth git-credential
 
 [pull]
   rebase = true
@@ -24,16 +23,16 @@
 [push]
   autoSetupRemote = true
 
-# [diff]
-#   external = difft --skip-unchanged --tab-width 4
+[diff]
+  external = difft --skip-unchanged --tab-width 4
 
-[core]
-  pager = delta
+# [core]
+#   pager = delta
 
-[delta]
-  navigate = true
-  line-numbers = true
-  side-by-side = true
+# [delta]
+#   navigate = true
+#   line-numbers = true
+#   side-by-side = true
 
 [init]
   defaultBranch = master
