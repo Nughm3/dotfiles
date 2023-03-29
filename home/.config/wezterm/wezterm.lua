@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
  
 return {
   color_scheme = "OneDark (base16)",
+  default_prog = { "/run/current-system/sw/bin/bash" },
 
   font = wezterm.font("JetBrainsMono Nerd Font Mono"),
   font_size = 10.5,
