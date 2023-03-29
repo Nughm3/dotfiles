@@ -20,7 +20,7 @@ return {
     button_bg = "#1e222a",
     button_hover_bg = "#353b45",
   },
-  
+
   colors = {
     tab_bar = {
       background = "#282c34",
@@ -55,4 +55,5 @@ return {
   },
 
   cursor_blink_rate = 0,
+  window_close_confirmation = "NeverPrompt"
 }
