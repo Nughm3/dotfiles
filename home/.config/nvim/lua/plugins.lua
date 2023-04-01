@@ -133,11 +133,7 @@ plugins = {
 	{
 		"numToStr/Comment.nvim",
 		config = function()
-			require("Comment").setup({
-				toggler = {
-					line = "<C-c>",
-				},
-			})
+			require("Comment").setup({ toggler = { line = "<C-c>", }, })
 		end
 	},
 	--[[
@@ -153,7 +149,7 @@ plugins = {
 			map({"n", "o", "x"}, "ge", function() require("spider").motion("ge") end, { desc = "Spider-ge" })
 		end
 	},
-	--]]
+	-- ]]
 }
 
 require("lazy").setup(plugins, opts)

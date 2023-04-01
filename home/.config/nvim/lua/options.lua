@@ -9,5 +9,6 @@ opt.relativenumber = true
 opt.scrolloff = 4
 opt.splitright = true
 opt.title = true
+opt.cursorline = true
 opt.clipboard = "unnamedplus"
 opt.signcolumn = "yes"

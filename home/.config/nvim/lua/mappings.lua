@@ -19,10 +19,6 @@ vim.g.mapleader = " "
 -- Normal mode
 nmap("<Esc>", "<Esc><cmd>silent! noh<CR>")
 
-nmap("n", "nzzzv")
-nmap("N", "Nzzzv")
-nmap("J", "mzJ`z")
-
 nmap("<C-u>", "<C-u>zz")
 nmap("<C-d>", "<C-d>zz")
 
@@ -84,3 +80,5 @@ vmap("<F1>", "<Nop>")
 
 vmap("<", "<gv")
 vmap(">", ">gv")
+
+vmap("<C-c>", "<C-c>gv")
