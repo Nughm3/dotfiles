@@ -4,6 +4,7 @@ c = "clippy"
 br = "build --release"
 rr = "run --release"
 nt = "nextest run"
+snap = "insta test --review"
 w = "watch -c"
 # Packages
 up = "update"

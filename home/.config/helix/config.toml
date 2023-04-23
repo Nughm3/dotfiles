@@ -8,14 +8,17 @@ line-number = "relative"
 cursorline = true
 idle-timeout = 0
 completion-trigger-len = 1
-true-color = true
+completion-replace = true
+true-color = true # st
 bufferline = "always"
 color-modes = true
 
 [editor.statusline]
 left = ["mode", "file-name"]
-right = ["diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "spinner", "file-type"]
-# mode = { normal = "NORMAL", insert = "INSERT", select = "SELECT" }
+right = ["version-control", "diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "spinner", "file-type"]
+
+[editor.lsp]
+display-inlay-hints = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -27,6 +30,9 @@ hidden = false
 render = true
 character = "╎"
 
+[editor.soft-wrap]
+enable = true
+
 [keys.normal]
 C-s = ":w"
 C-q = ":qa"
@@ -35,6 +41,8 @@ S-tab = ":bp"
 space.x = ":bc"
 H = "goto_first_nonwhitespace"
 L = "goto_line_end"
+0 = "goto_line_start"
+"$" = "goto_line_end"
 X = ["extend_line", "trim_selections"]
 "{" = "goto_prev_paragraph"
 "}" = "goto_next_paragraph"

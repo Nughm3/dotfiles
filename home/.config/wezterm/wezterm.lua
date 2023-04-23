@@ -1,5 +1,11 @@
 local wezterm = require("wezterm")
- 
+local mux = wezterm.mux
+
+wezterm.on("gui-startup", function()
+  local tab, pane, window = mux.spawn_window{}
+  window:gui_window():maximize()
+end)
+
 return {
   color_scheme = "OneDark (base16)",
   default_prog = { "/run/current-system/sw/bin/bash" },
