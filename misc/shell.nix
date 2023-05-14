@@ -4,8 +4,4 @@ mkShell {
     pkgconfig
     openssl
   ];
-  shellHook = ''
-    export RUSTFLAGS="-C target-feature=+crt-static"
-  ''
-  ;
 }

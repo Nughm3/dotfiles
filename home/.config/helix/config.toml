@@ -15,10 +15,10 @@ color-modes = true
 
 [editor.statusline]
 left = ["mode", "file-name"]
-right = ["version-control", "diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "spinner", "file-type"]
+right = ["version-control", "spacer", "diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "spinner", "file-type"]
 
 [editor.lsp]
-display-inlay-hints = true
+display-inlay-hints = false
 
 [editor.cursor-shape]
 insert = "bar"
