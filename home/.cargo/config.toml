@@ -20,7 +20,7 @@ cc = "cache -a"
 
 [build]
 # rustflags = ["-C", "link-arg=-fuse-ld=lld"]
-# rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+rustflags = ["-C", "link-arg=-fuse-ld=mold"]
 
 [registries.crates-io]
 protocol = "sparse"

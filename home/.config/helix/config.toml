@@ -1,4 +1,17 @@
+# theme = "catppuccin_frappe"
+# theme = "catppuccin_frappe"
+# theme = "catppuccin_latte"
+# theme = "catppuccin_macchiato"
+# theme = "catppuccin_mocha"
+# theme = "everblush"
+# theme = "everforest"
+# theme = "gruvbox"
+# theme = "nord"
+# theme = "nord_light"
 theme = "onedark"
+# theme = "onelight"
+# theme = "tokyonight"
+# theme = "tokyonight_storm"
 
 [editor]
 scrolloff = 3
@@ -10,18 +23,25 @@ idle-timeout = 0
 completion-trigger-len = 1
 completion-replace = true
 true-color = true # st
-bufferline = "always"
+bufferline = "multiple"
 color-modes = true
+shell = ["bash", "-c"]
 
 [editor.statusline]
-left = ["mode", "file-name"]
-right = ["version-control", "spacer", "diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "spinner", "file-type"]
+left = ["mode", "file-name", "file-modification-indicator"]
+center = ["version-control", "workspace-diagnostics"]
+right = ["diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "file-type", "spinner"]
+mode = { normal = "󰚄", insert = "󰏫", select = "󰩬" }
 
 [editor.lsp]
-display-inlay-hints = false
+display-messages = true
+display-inlay-hints = true
+goto-reference-include-declaration = false
 
 [editor.cursor-shape]
+normal = "block"
 insert = "bar"
+select = "underline"
 
 [editor.file-picker]
 hidden = false
@@ -43,6 +63,8 @@ H = "goto_first_nonwhitespace"
 L = "goto_line_end"
 0 = "goto_line_start"
 "$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+G = "goto_last_line"
 X = ["extend_line", "trim_selections"]
 "{" = "goto_prev_paragraph"
 "}" = "goto_next_paragraph"
@@ -53,5 +75,6 @@ C-k = "jump_view_up"
 C-l = "jump_view_right"
 
 [keys.insert]
+j = { k = "normal_mode" }
 C-backspace = "delete_word_backward"
 C-del = "delete_word_forward"
