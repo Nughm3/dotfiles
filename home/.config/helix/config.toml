@@ -1,7 +1,6 @@
-# Other neat themes
+theme = "onedark"
 # catppuccin_{frappe,latte,macchiato,mocha} everforest_{dark,light}
 # gruvbox nord{_light} one{dark,light} tokyonight{_storm}
-theme = "onedark"
 
 [editor]
 scrolloff = 3
@@ -66,9 +65,10 @@ j.k = "normal_mode"
 C-backspace = "delete_word_backward"
 C-del = "delete_word_forward"
 
-# Tool integrations
-
 [keys.normal."\\"]
-g = ":sh zellij run -c -- gitui"
-b = ":sh zellij run -c -- bacon"
+b = ":sh zellij run -cf -- bacon"
+c = ":sh zellij run -f -- ~/.local/bin/cht.sh"
+f = ":sh zellij run -cf -- lf"
+g = ":sh zellij run -cf -- gitui"
 h = ":sh zellij run -cf -- htop"
+m = ":sh zellij run -f -- make"
