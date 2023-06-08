@@ -1,35 +1,24 @@
-# theme = "catppuccin_frappe"
-# theme = "catppuccin_frappe"
-# theme = "catppuccin_latte"
-# theme = "catppuccin_macchiato"
-# theme = "catppuccin_mocha"
-# theme = "everblush"
-# theme = "everforest"
-# theme = "gruvbox"
-# theme = "nord"
-# theme = "nord_light"
+# Other neat themes
+# catppuccin_{frappe,latte,macchiato,mocha} everforest_{dark,light}
+# gruvbox nord{_light} one{dark,light} tokyonight{_storm}
 theme = "onedark"
-# theme = "onelight"
-# theme = "tokyonight"
-# theme = "tokyonight_storm"
 
 [editor]
 scrolloff = 3
 scroll-lines = 4
 middle-click-paste = false
+shell = ["bash", "-c"]
 line-number = "relative"
 cursorline = true
 idle-timeout = 0
 completion-trigger-len = 1
 completion-replace = true
-true-color = true # st
 bufferline = "multiple"
 color-modes = true
-shell = ["bash", "-c"]
 
 [editor.statusline]
 left = ["mode", "file-name", "file-modification-indicator"]
-center = ["version-control", "workspace-diagnostics"]
+center = ["workspace-diagnostics"]
 right = ["diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "file-type", "spinner"]
 mode = { normal = "󰚄", insert = "󰏫", select = "󰩬" }
 
@@ -48,7 +37,7 @@ hidden = false
 
 [editor.indent-guides]
 render = true
-character = "╎"
+character = "╎" # "▏", "╎", "┆", "┊"
 
 [editor.soft-wrap]
 enable = true
@@ -59,15 +48,13 @@ C-q = ":qa"
 tab = ":bn"
 S-tab = ":bp"
 space.x = ":bc"
-H = "goto_first_nonwhitespace"
-L = "goto_line_end"
+space.X = ":bc!"
 0 = "goto_line_start"
 "$" = "goto_line_end"
 "^" = "goto_first_nonwhitespace"
-G = "goto_last_line"
-X = ["extend_line", "trim_selections"]
 "{" = "goto_prev_paragraph"
 "}" = "goto_next_paragraph"
+"%" = ["save_selection", "select_all"]
 C-w.c = "wclose"
 C-h = "jump_view_left"
 C-j = "jump_view_down"
@@ -75,6 +62,13 @@ C-k = "jump_view_up"
 C-l = "jump_view_right"
 
 [keys.insert]
-j = { k = "normal_mode" }
+j.k = "normal_mode"
 C-backspace = "delete_word_backward"
 C-del = "delete_word_forward"
+
+# Tool integrations
+
+[keys.normal."\\"]
+g = ":sh zellij run -c -- gitui"
+b = ":sh zellij run -c -- bacon"
+h = ":sh zellij run -cf -- htop"

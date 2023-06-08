@@ -174,7 +174,7 @@ themes {
 
 theme "one-half-dark"
 
-default_layout "custom"
+default_layout "compact"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
