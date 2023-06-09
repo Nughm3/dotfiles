@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 languages=`echo "rust python c cpp zig go" | tr " " "\n"`
-coreutils=`echo "tar rsync" | tr " " "\n"`
+coreutils=`echo "dd head sed seq sort tac tail tar tee uniq wc" | tr " " "\n"`
 
 selected=`printf "$languages\n$coreutils" | fzf`
 
@@ -13,9 +13,9 @@ read -p "query: " query
 query=`echo $query | tr " " "+"`
 echo "---"
 
-if printf $languages | grep -qs $selected; then
-  curl cht.sh/$selected/$query
+if echo $languages | grep -q $selected; then
+  curl https://cht.sh/$selected/$query
 else
-  curl cht.sh/$selected~$query
+  curl https://cht.sh/$selected~$query
 fi
 
