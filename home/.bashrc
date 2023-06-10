@@ -30,7 +30,8 @@ alias fd="fd -H"
 alias watchexec="watchexec --clear=clear"
 alias wx="watchexec"
 alias zj="zellij"
-alias at='zellij attach --create ${PWD##*/}'
+alias at='zellij attach $(zellij list-sessions | fzf -0 -1)'
+alias ac='zellij attach --create ${PWD##*/}'
 
 alias g="git"
 alias gs="git status"
