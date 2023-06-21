@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-languages=`echo "rust python c cpp zig go" | tr " " "\n"`
+languages=`echo "bash c cpp go python rust zig" | tr " " "\n"`
 coreutils=`echo "dd head sed seq sort tac tail tar tee uniq wc" | tr " " "\n"`
 
 selected=`printf "$languages\n$coreutils" | fzf`
