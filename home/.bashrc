@@ -4,8 +4,6 @@ export EDITOR="hx"
 export NEXT_TELEMETRY_DISABLED=1
 export ASTRO_TELEMETRY_DISABLED=1
 
-alias note='$EDITOR ~/Documents/notes/$(date +%Y-%m-%d).md'
-
 alias nixos-config="sudoedit /etc/nixos/configuration.nix"
 alias nixos-update="sudo nixos-rebuild switch --upgrade-all"
 alias nixos-clean="sudo nix-collect-garbage -d"
