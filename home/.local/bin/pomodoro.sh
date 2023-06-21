@@ -2,12 +2,16 @@
 
 SESSION_FILE="/tmp/pomodoro-session"
 
+function notify() {
+  notify-send --app-name "Pomodoro" "$@"
+}
+
 function pomodoro() {
   while true; do
-    notify-send "Work time" "25 minutes"
-    sleep 5
-    notify-send "Break time" "5 minutes"
-    sleep 5
+    notify "Work time" "25 minutes"
+    sleep 1500
+    notify "Break time" "5 minutes"
+    sleep 300
   done
 }
 
@@ -26,17 +30,27 @@ function start() {
   echo $! > $SESSION_FILE
 }
 
-if [ "$1" = "start" ]; then
-  start
-  echo "Session started"
-elif [ "$1" = "stop" ]; then
-  stop
-  echo "Session stopped"
-else
-  echo "Usage: pomodoro.sh [start|stop]"
-  if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-    exit 0
+function toggle() {
+  if [ -f $SESSION_FILE ]; then
+    notify "Session stopped"
+    stop
   else
+    notify "Session started"
+    start
+  fi
+}
+
+if [ "$1" = "start" ]; then
+  notify "Session started"
+  start
+elif [ "$1" = "stop" ]; then
+  notify "Session stopped"
+  stop
+elif [ "$1" = "toggle" ]; then
+  toggle
+else
+  echo "Usage: pomodoro.sh [start|stop|toggle]"
+  if [ "$1" != "-h" ] && [ "$1" != "--help" ]; then
     exit 1
   fi
 fi
