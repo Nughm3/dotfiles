@@ -2,9 +2,9 @@
 # alias hx="helix"
 
 set -g fish_greeting
-set -g EDITOR hx
-set -g NEXT_TELEMETRY_DISABLED
-set -g ASTRO_TELEMETRY_DISABLED
+set -gx EDITOR hx
+set -gx NEXT_TELEMETRY_DISABLED
+set -gx ASTRO_TELEMETRY_DISABLED
 
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
