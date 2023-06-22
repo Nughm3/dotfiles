@@ -2,6 +2,7 @@
 # alias hx="helix"
 
 set -g fish_greeting
+set -gx SHELL /run/current-system/sw/bin/fish
 set -gx EDITOR hx
 set -gx NEXT_TELEMETRY_DISABLED
 set -gx ASTRO_TELEMETRY_DISABLED
@@ -48,10 +49,10 @@ alias rt="git rev-parse --show-toplevel"
 
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        echo "Starting KDE Plasma..."
-        exec startplasma-wayland
-        # echo "Starting River..."
-        # exec river
+        # echo "Starting KDE Plasma..."
+        # exec startplasma-wayland
+        echo "Starting River..."
+        exec river
     end
 end
 
