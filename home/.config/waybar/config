@@ -34,7 +34,7 @@
     "backlight": {
         "scroll-step": 5,
         "format": "{icon} {percent}%",
-        "format-icons": [""]
+        "format-icons": ["󰃠"]
     },
     "battery": {
         "states": {

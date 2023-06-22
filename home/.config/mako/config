@@ -1,0 +1,15 @@
+sort=-time
+layer=overlay
+background-color=#282c34
+width=300
+height=100
+border-size=2
+border-color=#3e4451
+border-radius=8
+default-timeout=5000
+font=Inter 11
+outer-margin=10
+
+[urgency=high]
+border-color=#e06c75
+default-timeout=0

@@ -21,8 +21,8 @@ alias e="$EDITOR"
 alias c="cargo"
 
 alias ls="exa --icons --git"
-alias la="exa --icons --git -la"
-alias lt="exa -T --icons --git-ignore"
+alias la="ls -la"
+alias lt="ls -T --git-ignore"
 
 alias rm="rm -i"
 alias mv="mv -i"
@@ -46,15 +46,6 @@ alias gu="git pull"
 alias gp="git push"
 alias gg='cd (git rev-parse --show-toplevel)'
 alias rt="git rev-parse --show-toplevel"
-
-if status is-login
-    if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-        # echo "Starting KDE Plasma..."
-        # exec startplasma-wayland
-        echo "Starting River..."
-        exec river
-    end
-end
 
 if status is-interactive
     zoxide init fish | source
