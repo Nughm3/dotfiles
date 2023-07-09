@@ -101,4 +101,4 @@ wlr-randr --output eDP-1 --preferred --pos 1920,0
 wlr-randr --output HDMI-A-1 --mode 1920x1080@74.973Hz --pos 0,0
 
 waybar &
-wbg ~/Pictures/wall/nasa.png &
+wbg ~/Pictures/wall/astronaut-falling.png &
