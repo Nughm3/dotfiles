@@ -4,6 +4,7 @@
 set -g fish_greeting
 set -gx SHELL /run/current-system/sw/bin/fish
 set -gx EDITOR hx
+set -gx NIXPKGS_ALLOW_UNFREE 1
 set -gx NEXT_TELEMETRY_DISABLED
 set -gx ASTRO_TELEMETRY_DISABLED
 
