@@ -58,7 +58,7 @@ done
 riverctl map normal Super F toggle-float
 riverctl map normal Super Space toggle-fullscreen
 
-riverctl map normal None Print spawn 'grim -g $(slurp) - | wl-copy'
+riverctl map normal None Print spawn 'grim -g "$(slurp)" - | wl-copy'
 riverctl map normal Shift Print spawn 'grim -c - | wl-copy'
 riverctl map normal Control Print spawn "grim -g \"\$(slurp -p)\" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | wl-copy"
 
