@@ -1,15 +1,17 @@
 #!/bin/sh
 
-riverctl map normal Super Return spawn foot
-riverctl map normal Super P spawn "bemenu-run -i -p run --fn 'JetBrainsMono Nerd Font 11' -H 30 --ch 16 --cw 2 --hp 8 --tb '#61afef' --tf '#282c34' --ff '#c8ccd4' --fb '#1e222a' --nb '#282c34' --nf '#61afef' --hb '#61afef' --hf '#282c34' --ab '#282c34' --af '#61afef' --scrollbar autohide"
-riverctl map normal Super O spawn "obsidian"
+riverctl map normal Super Return spawn "foot"
 riverctl map normal Super B spawn "firefox"
+riverctl map normal Super O spawn "obsidian"
+riverctl map normal Super P spawn "bemenu-run -i -p run --fn 'JetBrainsMono Nerd Font 11' -H 30 --ch 16 --cw 2 --hp 8 --tb '#61afef' --tf '#282c34' --ff '#c8ccd4' --fb '#1e222a' --nb '#282c34' --nf '#61afef' --hb '#61afef' --hf '#282c34' --ab '#282c34' --af '#61afef' --scrollbar autohide"
+riverctl map normal Super+Shift A spawn "aseprite"
 riverctl map normal Super+Shift B spawn "firefox --private-window"
-riverctl map normal Super+Shift F spawn "figma-linux"
 riverctl map normal Super+Shift D spawn "discord"
+riverctl map normal Super+Shift F spawn "figma-linux"
 riverctl map normal Super+Shift I spawn "idea-community"
-riverctl map normal Super+Shift Y spawn "pycharm-community"
 riverctl map normal Super+Shift V spawn "code"
+riverctl map normal Super+Shift Y spawn "pycharm-community"
+riverctl map normal Super+Shift Z spawn "zotero"
 
 riverctl map normal Super C close
 riverctl map normal Super+Shift Q exit
@@ -104,4 +106,4 @@ wlr-randr --output eDP-1 --preferred --pos 1920,0
 wlr-randr --output HDMI-A-1 --mode 1920x1080@74.973Hz --pos 0,0
 
 waybar &
-wbg ~/Pictures/wall/swirls.png &
+wbg ~/Pictures/wall/cube.jpg &
