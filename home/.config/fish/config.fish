@@ -21,7 +21,7 @@ alias nixos-clean="sudo nix-collect-garbage -d"
 alias e="$EDITOR"
 alias c="cargo"
 
-alias ls="exa --icons --git"
+alias ls="eza --icons --git"
 alias la="ls -la"
 alias lt="ls -T --git-ignore"
 

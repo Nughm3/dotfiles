@@ -11,9 +11,9 @@ alias nixos-clean="sudo nix-collect-garbage -d"
 alias rc='$EDITOR ~/.bashrc'
 alias so="source ~/.bashrc"
 
-alias ls="exa --icons --git"
-alias la="exa --icons --git -la"
-alias lt="exa -T --icons --git-ignore"
+alias ls="eza --icons --git"
+alias la="eza --icons --git -la"
+alias lt="eza -T --icons --git-ignore"
 
 alias rm="rm -i"
 alias mv="mv -i"
