@@ -8,7 +8,7 @@ end)
 
 return {
   color_scheme = "OneDark (base16)",
-  default_prog = { "/run/current-system/sw/bin/bash" },
+  default_prog = { "/run/current-system/sw/bin/fish" },
 
   font = wezterm.font("JetBrainsMono Nerd Font Mono"),
   font_size = 10.5,
@@ -60,6 +60,5 @@ return {
     },
   },
 
-  cursor_blink_rate = 0,
   window_close_confirmation = "NeverPrompt"
 }
