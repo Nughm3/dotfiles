@@ -14,9 +14,10 @@ fish_add_path ~/.cargo/bin
 alias rc="$EDITOR ~/.config/fish/config.fish"
 alias so="source ~/.config/fish/config.fish"
 
-alias nixos-config="sudoedit /etc/nixos/configuration.nix"
-alias nixos-update="sudo nixos-rebuild switch --upgrade-all"
-alias nixos-clean="sudo nix-collect-garbage -d"
+alias nixos-config="$EDITOR ~/.dotfiles/nixos/configuration.nix"
+alias home-config="$EDITOR ~/.dotfiles/home-manager/home.nix"
+alias nixos-update="sudo nixos-rebuild switch --upgrade-all --flake ~/.dotfiles#nixos --impure"
+alias nixos-clean="nix store gc && nix store optimise"
 
 alias e="$EDITOR"
 alias c="cargo"

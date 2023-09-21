@@ -52,6 +52,7 @@
     rm-improved
     sd
     starship
+    taskwarrior
     tealdeer
     tokei
     watchexec

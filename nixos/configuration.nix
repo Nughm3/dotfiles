@@ -80,6 +80,7 @@
       xkbVariant = "";
     };
 
+    auto-cpufreq.enable = true;
     openssh.enable = true;
     upower.enable = true;
   };
