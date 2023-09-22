@@ -54,6 +54,7 @@
     starship
     taskwarrior
     tealdeer
+    timewarrior
     tokei
     watchexec
     xplr
@@ -82,6 +83,7 @@
     rustup
     texlab
     texlive.combined.scheme-basic
+    trunk
     zig
     zls
 

@@ -12,21 +12,22 @@
     hardware.url = "github:NixOS/nixos-hardware";
   };
 
-  outputs = { self, nixpkgs, home-manager, hardware, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, hardware, ... }@inputs:
+  let inherit (self) outputs; in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = { inherit inputs outputs; };
       modules = [
         ./nixos/configuration.nix
 
         hardware.nixosModules.asus-battery { hardware.asus.battery.chargeUpto = 96; }
         hardware.nixosModules.asus-zephyrus-ga401
-
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.isaac = import ./home-manager/home.nix;
-        }
       ];
+    };
+
+    homeConfigurations."isaac@nixos" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      extraSpecialArgs = { inherit inputs outputs; };
+      modules = [ ./home-manager/home.nix ];
     };
   };
 }

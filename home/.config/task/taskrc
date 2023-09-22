@@ -40,3 +40,5 @@ data.location=/home/isaac/.task
 #include no-color.theme
 
 news.version=2.6.0
+context.school.read=+school
+context.school.write=+school

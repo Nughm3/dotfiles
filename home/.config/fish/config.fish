@@ -7,6 +7,7 @@ set -gx EDITOR hx
 set -gx NIXPKGS_ALLOW_UNFREE 1
 set -gx NEXT_TELEMETRY_DISABLED
 set -gx ASTRO_TELEMETRY_DISABLED
+set -gx BEMENU_OPTS "-i -p run --fn 'JetBrainsMono Nerd Font 11' -H 30 --ch 16 --cw 2 --hp 8 --tb '#61afef' --tf '#282c34' --ff '#c8ccd4' --fb '#1e222a' --nb '#282c34' --nf '#61afef' --hb '#61afef' --hf '#282c34' --ab '#282c34' --af '#61afef' --scrollbar autohide"
 
 fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
@@ -15,9 +16,10 @@ alias rc="$EDITOR ~/.config/fish/config.fish"
 alias so="source ~/.config/fish/config.fish"
 
 alias nixos-config="$EDITOR ~/.dotfiles/nixos/configuration.nix"
-alias home-config="$EDITOR ~/.dotfiles/home-manager/home.nix"
 alias nixos-update="sudo nixos-rebuild switch --upgrade-all --flake ~/.dotfiles#nixos --impure"
 alias nixos-clean="nix store gc && nix store optimise"
+alias home-config="$EDITOR ~/.dotfiles/home-manager/home.nix"
+alias home-update="home-manager switch --flake ~/.dotfiles#isaac@nixos --impure"
 
 alias e="$EDITOR"
 alias c="cargo"

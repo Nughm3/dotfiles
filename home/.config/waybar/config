@@ -52,12 +52,12 @@
     },
     "network": {
         "format-wifi": "  {essid}",
-        "format-linked": "󱛅 {ifname} (No IP)",
-        "format-disconnected": "󰖪 Disconnected",
+        "format-linked": "󱛅  {ifname} (No IP)",
+        "format-disconnected": "󰖪  Disconnected",
         "tooltip-format": "{ifname} via {gwaddr}"
     },
     "clock": {
-        "format": " {:%Y-%m-%d  %H:%M}",
+        "format": " {:%Y-%m-%d (%a)  %H:%M}",
         "tooltip-format": 
             "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     }
