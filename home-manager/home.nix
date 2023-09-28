@@ -1,10 +1,24 @@
-{ config, pkgs, ... }: {
+{ inputs, pkgs, ... }: {
   home.username = "isaac";
   home.homeDirectory = "/home/isaac";
 
-  programs.home-manager.enable = true;
+  programs = {
+    helix.enable = true;
+    home-manager.enable = true;
+    kakoune.enable = true;
+  };
 
   services.syncthing.enable = true;
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+      cudaSupport = true;
+    };
+
+    overlays = [ inputs.rust-overlay.overlays.default ];
+  };
 
   home.packages = with pkgs; [
     # Applications
@@ -64,6 +78,7 @@
 
     # Language tools
     bacon
+    black
     bun
     deno
     evcxr
@@ -74,13 +89,34 @@
     nil
     nodejs
     nodePackages_latest.pnpm
+    nodePackages_latest.prettier
+    nodePackages_latest.vscode-langservers-extracted
     nodePackages_latest.typescript-language-server
+    nodePackages_latest.svelte-language-server
     pandoc
     pypy3
     python3Packages.pip
     python3Packages.python-lsp-server
-    # rust-analyzer
-    rustup
+    (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
+      extensions = [
+        "cargo"
+        "clippy"
+        "llvm-tools"
+        "miri"
+        "rust-analyzer"
+        "rustc"
+        "rust-docs"
+        "rustfmt"
+        "rust-src"
+        "rust-std"
+      ];
+
+      targets = [
+        "x86_64-unknown-linux-gnu"
+        "wasm32-unknown-unknown"
+        "thumbv7em-none-eabihf"
+      ];
+    }))
     texlab
     texlive.combined.scheme-basic
     trunk
@@ -99,6 +135,7 @@
 
     # Cargo plugins
     cargo-audit
+    cargo-binutils
     cargo-bloat
     cargo-cache
     cargo-clone

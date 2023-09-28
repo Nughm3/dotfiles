@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ inputs, config, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./cachix.nix
@@ -37,8 +37,11 @@
   };
 
   programs = {
-    fish.enable = true;
-    
+    git = {
+      enable = true;
+      lfs.enable = true;
+    };
+
     river = {
       enable = true;
       extraPackages = with pkgs; [
@@ -56,6 +59,9 @@
       ];
     };
 
+    fish.enable = true;
+    htop.enable = true;
+    neovim.enable = true;
     waybar.enable = true;
   };
 
@@ -80,10 +86,15 @@
       xkbVariant = "";
     };
 
+    udev.extraRules = ''
+         ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /media"       
+    '';
+
     auto-cpufreq.enable = true;
     openssh.enable = true;
     upower.enable = true;
   };
+
 
   hardware = {
     opengl = {
@@ -111,7 +122,7 @@
     isNormalUser = true;
     description = "Isaac Hung";
     shell = pkgs.fish;
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -119,11 +130,8 @@
     cachix
     curl
     efibootmgr
-    helix
     home-manager
-    htop
     kakoune
-    neovim
     rsync
     unzip
     wget
@@ -134,8 +142,6 @@
     # Development tools
     clang-tools
     gcc
-    git
-    git-lfs
     linuxPackages_latest.perf
     llvmPackages_latest.bintools
     llvmPackages_latest.clang
@@ -143,6 +149,7 @@
     mold
     pkg-config
     python3
+    rustup
 
     # Libraries
     libnotify
@@ -169,16 +176,21 @@
     })
   ];
 
-  nixpkgs.config = {
+nixpkgs = {
+  config = {
     allowUnfree = true;
     cudaSupport = true;
   };
+
+  overlays = [ inputs.rust-overlay.overlays.default ];
+};
 
   nix = {
     package = pkgs.nixFlakes;
     settings = {
       trusted-users = [ "root" ];
       experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
     };
   };
 
