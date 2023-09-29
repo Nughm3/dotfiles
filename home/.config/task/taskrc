@@ -1,3 +1,4 @@
+include /home/isaac/.config/task/home-manager-taskrc
 # [Created by task 2.6.2 9/21/2023 18:09:29]
 # Taskwarrior program configuration file.
 # For more documentation, see https://taskwarrior.org or try 'man task', 'man task-color',
