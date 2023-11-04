@@ -15,11 +15,35 @@ fish_add_path ~/.cargo/bin
 alias rc="$EDITOR ~/.config/fish/config.fish"
 alias so="source ~/.config/fish/config.fish"
 
-alias nixos-config="$EDITOR ~/.dotfiles/nixos/configuration.nix"
-alias nixos-update="nix flake update ~/.dotfiles && sudo nixos-rebuild switch --upgrade-all --flake ~/.dotfiles#nixos --impure"
-alias nixos-clean="nix store gc && nix store optimise"
+alias dotfiles-update="nix flake update ~/.dotfiles"
 alias home-config="$EDITOR ~/.dotfiles/home-manager/home.nix"
-alias home-update="nix flake update ~/.dotfiles && home-manager switch --flake ~/.dotfiles#isaac@nixos --impure"
+alias nixos-config="$EDITOR ~/.dotfiles/nixos/configuration.nix"
+
+function home-update
+    home-manager switch \
+        --flake ~/.dotfiles#isaac@nixos \
+        --impure \
+        $argv
+end
+
+function nixos-update
+    sudo nixos-rebuild switch \
+        --upgrade-all \
+        --flake ~/.dotfiles#nixos \
+        --impure \
+        $argv
+end
+
+function nixos-clean
+    nix store gc
+    nix store optimise
+end
+
+function update
+    dotfiles-update
+    nixos-update
+    home-update
+end
 
 alias e="$EDITOR"
 alias c="cargo"

@@ -65,6 +65,23 @@
       '';
     };
 
+    sioyek = {
+      enable = true;
+      bindings = {
+        "screen_up" = [ "<C-u>" "K" "<pgup>" ];
+        "screen_down" = [ "<C-d>" "J" "<pgdn>" ];
+        "new_window" = "<C-t>";
+        "fit_to_page_width" = "w";
+        "fit_to_page_width_smart" = "W";
+        "fit_to_page_height_smart" = "H";
+        "open_last_document" = "<A-o>";
+        "toggle_highlight" = "<C-h>";
+        "open_selected_url" = "Q";
+        "toggle_synctex" = "X";
+        
+      };
+    };
+
     starship = {
       enable = true;
       enableFishIntegration = true;
@@ -183,19 +200,23 @@
     bat.enable = true;
     btop.enable = true;
     gh-dash.enable = true;
+    jq.enable = true;
     pandoc.enable = true;
     ripgrep.enable = true;
     taskwarrior.enable = true;
     tealdeer.enable = true;
-    texlive.enable = true;
     xplr.enable = true;
+    yazi.enable = true;
     yt-dlp.enable = true;
     zellij.enable = true;
 
     go.enable = true;
   };
 
-  services.syncthing.enable = true;
+  services = {
+    autorandr.enable = true;
+    syncthing.enable = true;
+  };
 
   nixpkgs = {
     config = {
@@ -213,12 +234,11 @@
     discord
     drawio
     figma-linux
-    flyctl
     noisetorch
     nyxt
     obsidian
+    # ollama
     sqlitebrowser
-    zathura
     zotero
 
     # Command line utilities
@@ -232,11 +252,12 @@
     fd
     fend
     ffmpeg
+    fx
     glow
+    httpie
     imagemagick
     just
     procs
-    pulsemixer
     rm-improved
     sd
     timewarrior
@@ -259,6 +280,7 @@
     nodePackages_latest.vscode-langservers-extracted
     nodePackages_latest.typescript-language-server
     nodePackages_latest.svelte-language-server
+    marksman
     pypy3
     python3Packages.pip
     python3Packages.python-lsp-server
@@ -282,7 +304,9 @@
         "thumbv7em-none-eabihf"
       ];
     }))
+    tectonic
     texlab
+    texlive.combined.scheme-basic
     trunk
     zig
     zls

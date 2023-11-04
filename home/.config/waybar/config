@@ -1,65 +1,96 @@
 {
-    "layer": "bottom",
-    "position": "top",
-    "height": 30,
-    "spacing": 16,
-
-    "modules-left": ["river/tags", "river/mode"],
-    "modules-center": ["river/window"],
-    "modules-right": [ "tray", "pulseaudio", "backlight", "battery", "network", "clock" ],
-
-    "river/mode": {
-        "format": "{}"
+  "layer": "bottom",
+  "position": "top",
+  "height": 30,
+  "spacing": 16,
+  "modules-left": [
+    "river/tags",
+    "river/mode"
+  ],
+  "modules-center": [
+    "river/window"
+  ],
+  "modules-right": [
+    "tray",
+    // "pulseaudio",
+    "wireplumber",
+    "backlight",
+    "battery",
+    "network",
+    "clock"
+  ],
+  "river/mode": {
+    "format": "{}"
+  },
+  "river/tags": {
+    "num-tags": 9
+  },
+  "river/window": {
+    "format": "{}",
+    "max-length": 100
+  },
+  "tray": {
+    "spacing": 5
+  },
+  // "pulseaudio": {
+  //   "scroll-step": 5,
+  //   "format": "{icon} {volume}%",
+  //   "format-muted": "󰖁",
+  //   "format-icons": {
+  //     "headphone": "󰋋",
+  //     "default": [
+  //       "󰕿 ",
+  //       "󰖀 ",
+  //       "󰕾 "
+  //     ]
+  //   },
+  //   "on-click": "pamixer --toggle-mute"
+  // },
+  "wireplumber": {
+    "scroll-step": 5,
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁",
+    "format-icons": [
+      "󰕿 ",
+      "󰖀 ",
+      "󰕾 "
+    ],
+    "on-click": "pamixer --toggle-mute"
+  },
+  "backlight": {
+    "scroll-step": 5,
+    "format": "{icon} {percent}%",
+    "format-icons": [
+      "󰃠"
+    ]
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
     },
-    "river/tags": {
-        "num-tags": 9
-    },
-    "river/window": {
-        "format": "{}",
-        "max-length": 100
-    },
-
-    "tray": {
-        "spacing": 5
-    },
-    "pulseaudio": {
-        "scroll-step": 5,
-        "format": "{icon} {volume}%",
-        "format-muted": "󰝟 {volume}%",
-        "format-icons": {
-            "headphone": "󰋋",
-            "default": [" ", " ", " "]
-        },
-        "on-click": "pamixer --toggle-mute"
-    },
-    "backlight": {
-        "scroll-step": 5,
-        "format": "{icon} {percent}%",
-        "format-icons": ["󰃠"]
-    },
-    "battery": {
-        "states": {
-            "good": 95,
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-good": "{icon} {capacity}%",
-        "format-full": "{icon} {capacity}%",
-        "format-icons": [" ", " ", " ", " ", " "]
-    },
-    "network": {
-        "format-wifi": "  {essid}",
-        "format-linked": "󱛅  {ifname} (No IP)",
-        "format-disconnected": "󰖪  Disconnected",
-        "tooltip-format": "{ifname} via {gwaddr}"
-    },
-    "clock": {
-        "format": " {:%Y-%m-%d (%a)  %H:%M}",
-        "tooltip-format": 
-            "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    }
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-good": "{icon} {capacity}%",
+    "format-full": "{icon} {capacity}%",
+    "format-icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ]
+  },
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-linked": "󱛅  {ifname} (No IP)",
+    "format-disconnected": "󰖪  Disconnected",
+    "tooltip-format": "{ifname} via {gwaddr}"
+  },
+  "clock": {
+    "format": " {:%Y-%m-%d (%a)  %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  }
 }
-

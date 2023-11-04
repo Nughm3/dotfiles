@@ -9,11 +9,9 @@ window#waybar {
   background: #282c34;
 }
 
-.modules-left {
-}
+.modules-left {}
 
-.modules-center {
-}
+.modules-center {}
 
 .modules-right {
   padding-right: 8px;
@@ -27,6 +25,8 @@ window#waybar {
 
 #tags button:hover {
   background: #3e4451;
+  box-shadow: inherit;
+  text-shadow: inherit;
 }
 
 #tags button.occupied {
@@ -56,6 +56,7 @@ window#waybar {
 
 #mode,
 #pulseaudio,
+#wireplumber,
 #backlight,
 #battery,
 #network,
@@ -67,11 +68,13 @@ window#waybar {
   color: #e06c75;
 }
 
-#pulseaudio {
+#pulseaudio,
+#wireplumber {
   color: #c678dd;
 }
 
-#pulseaudio.muted {
+#pulseaudio.muted,
+#wireplumber.muted {
   color: #e06c75;
   font-weight: bold;
 }
@@ -90,7 +93,7 @@ window#waybar {
 }
 
 #battery.warning:not(.charging) {
-	color: #d19a66;
+  color: #d19a66;
   font-weight: bold;
 }
 

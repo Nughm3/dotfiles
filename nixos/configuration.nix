@@ -13,116 +13,7 @@
     };
 
     kernelPackages = pkgs.linuxPackages_latest;
-  };
-
-  networking = {
-    hostName = "nixos";
-    networkmanager.enable = true;
-    firewall.enable = false;
-  };
-
-  time.timeZone = "Asia/Hong_Kong";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
-
-  programs = {
-    git = {
-      enable = true;
-      lfs.enable = true;
-    };
-
-    river = {
-      enable = true;
-      extraPackages = with pkgs; [
-        bemenu
-        grim
-        imv
-        light
-        mako
-        pamixer
-        playerctl
-        river
-        slurp
-        wbg
-        wlr-randr
-      ];
-    };
-
-    fish.enable = true;
-    htop.enable = true;
-    neovim.enable = true;
-    waybar.enable = true;
-  };
-
-  xdg.portal.wlr.enable = true;
-
-  services = {
-    greetd = {
-      enable = true;
-      settings.default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd river";
-        user = "greeter";
-      };
-    };
-    
-    xserver = {
-      enable = true;
-      displayManager.startx.enable = true;
-
-      videoDrivers = [ "nvidia" ];
-      libinput.enable = true;
-      layout = "us";
-      xkbVariant = "";
-    };
-
-    udev.extraRules = ''
-         ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /media"       
-    '';
-
-    auto-cpufreq.enable = true;
-    openssh.enable = true;
-    upower.enable = true;
-  };
-
-
-  hardware = {
-    opengl = {
-      enable = true;
-      driSupport32Bit = true;
-    };
-
-    nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
-      modesetting.enable = true;
-    };
-  };
-
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
-
-  security.polkit.enable = true;
-
-  virtualisation.docker = {
-    enable = true;
-    enableNvidia = true;
-  };
-
-  users.users.isaac = {
-    isNormalUser = true;
-    description = "Isaac Hung";
-    shell = pkgs.fish;
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    # kernelPackages = pkgs.linuxPackages_xanmod_latest;
   };
 
   environment.systemPackages = with pkgs; [
@@ -141,6 +32,7 @@
 
     # Development tools
     clang-tools
+    cudatoolkit
     gcc
     linuxPackages_latest.perf
     llvmPackages_latest.bintools
@@ -176,24 +68,164 @@
     })
   ];
 
-nixpkgs = {
-  config = {
-    allowUnfree = true;
-    cudaSupport = true;
+  hardware = {
+    opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+    };
+
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      modesetting.enable = true;
+      nvidiaSettings = true;
+    };
   };
 
-  overlays = [ inputs.rust-overlay.overlays.default ];
-};
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
+
+  networking = {
+    hostName = "nixos";
+    networkmanager.enable = true;
+    firewall.enable = false;
+  };
 
   nix = {
     package = pkgs.nixFlakes;
     settings = {
-      trusted-users = [ "root" ];
+      trusted-users = [ "root" "isaac" ];
       experimental-features = [ "nix-command" "flakes" ];
       auto-optimise-store = true;
+      warn-dirty = false;
     };
   };
 
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+      cudaSupport = true;
+    };
+
+    overlays = [ inputs.rust-overlay.overlays.default ];
+  };
+
+  programs = {
+    git = {
+      enable = true;
+      lfs.enable = true;
+    };
+
+    river = {
+      enable = true;
+      extraPackages = with pkgs; [
+        bemenu
+        glib
+        grim
+        imv
+        light
+        mako
+        pamixer
+        playerctl
+        pulsemixer
+        river
+        slurp
+        wayland
+        wbg
+        wlr-randr
+        xdg-utils
+      ];
+    };
+
+    fish.enable = true;
+    htop.enable = true;
+    neovim.enable = true;
+    waybar.enable = true;
+  };
+
+  security = {
+    polkit.enable = true;
+    rtkit.enable = true;
+  };
+
+  services = {
+    greetd = {
+      enable = true;
+      settings.default_session = {
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd river";
+        user = "greeter";
+      };
+    };
+
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+      wireplumber.enable = true;
+    };
+    
+    xserver = {
+      enable = true;
+      displayManager.startx.enable = true;
+
+      # desktopManager = {
+      #   xterm.enable = false;
+      #   xfce.enable = true;
+      # };
+      # displayManager.defaultSession = "xfce";
+
+      videoDrivers = [ "nvidia" ];
+      libinput.enable = true;
+      layout = "us";
+      xkbVariant = "";
+    };
+
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /media"       
+    '';
+
+    auto-cpufreq.enable = true;
+    dbus.enable = true;
+    openssh.enable = true;
+    teamviewer.enable = true;
+    upower.enable = true;
+  };
+
+  sound.enable = true;
+
+  time.timeZone = "Asia/Hong_Kong";
+
+  users.users.isaac = {
+    isNormalUser = true;
+    description = "Isaac Hung";
+    shell = pkgs.fish;
+    extraGroups = [ "wheel" "networkmanager" "docker" ];
+  };
+
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

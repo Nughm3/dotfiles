@@ -16,9 +16,9 @@ bufferline = "multiple"
 color-modes = true
 
 [editor.statusline]
-left = ["mode", "file-name", "file-modification-indicator"]
-center = ["workspace-diagnostics"]
-right = ["diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "file-type", "spinner"]
+left = ["mode", "file-name", "read-only-indicator", "file-modification-indicator"]
+center = ["version-control", "workspace-diagnostics"]
+right = ["diagnostics", "spacer", "selections", "primary-selection-length", "register", "spacer", "position", "position-percentage", "spacer", "file-type", "spinner"]
 mode = { normal = "󰚄", insert = "󰏫", select = "󰩬" }
 
 [editor.lsp]
@@ -68,7 +68,7 @@ C-del = "delete_word_forward"
 [keys.normal."\\"]
 b = ":sh zellij run -cf -- bacon"
 c = ":sh zellij run -f -- ~/.local/bin/cht.sh"
-f = ":sh zellij run -cf -- lf"
+f = ":sh zellij run -cf -- xplr"
 g = ":sh zellij run -cf -- gitui"
 h = ":sh zellij run -cf -- htop"
 m = ":sh zellij run -f -- make"

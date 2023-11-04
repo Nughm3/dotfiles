@@ -7,7 +7,9 @@ riverctl map normal Super B spawn "firefox"
 riverctl map normal Super N spawn "nyxt"
 riverctl map normal Super O spawn "obsidian"
 riverctl map normal Super P spawn "bemenu-run -i -p run --fn 'JetBrainsMono Nerd Font 11' -H 30 --ch 16 --cw 2 --hp 8 --tb '#61afef' --tf '#282c34' --ff '#c8ccd4' --fb '#1e222a' --nb '#282c34' --nf '#61afef' --hb '#61afef' --hf '#282c34' --ab '#282c34' --af '#61afef' --scrollbar autohide"
-riverctl map normal Super T spawn "~/.local/bin/timew-bemenu.sh"
+riverctl map normal Super S spawn "sioyek"
+# riverctl map normal Super T spawn "~/.local/bin/timew-bemenu.sh"
+riverctl map normal Super Z spawn "zathura"
 
 riverctl map normal Super+Shift A spawn "aseprite"
 riverctl map normal Super+Shift B spawn "firefox --private-window"
@@ -108,6 +110,7 @@ for mode in normal locked; do
 	riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 5'
 done
 
+systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river &
 
 wlr-randr --output eDP-1 --preferred --pos 1920,0
