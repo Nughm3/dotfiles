@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }: {
+{ config, pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./cachix.nix
@@ -40,13 +40,9 @@
     llvmPackages_latest.llvm
     mold
     pkg-config
+    pypy3
     python3
     rustup
-
-    # Libraries
-    libnotify
-    openssl
-    raylib
   ];
 
   fonts.packages = with pkgs; [
@@ -80,6 +76,8 @@
       modesetting.enable = true;
       nvidiaSettings = true;
     };
+
+    pulseaudio.enable = true;
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -117,8 +115,6 @@
       allowUnfreePredicate = _: true;
       cudaSupport = true;
     };
-
-    overlays = [ inputs.rust-overlay.overlays.default ];
   };
 
   programs = {
@@ -168,25 +164,24 @@
       };
     };
 
-    pipewire = {
-      enable = true;
-      alsa = {
-        enable = true;
-        support32Bit = true;
-      };
-      pulse.enable = true;
-      wireplumber.enable = true;
-    };
+    # pipewire = {
+    #   enable = true;
+    #   alsa = {
+    #     enable = true;
+    #     support32Bit = true;
+    #   };
+    #   pulse.enable = true;
+    #   wireplumber.enable = true;
+    # };
     
     xserver = {
       enable = true;
       displayManager.startx.enable = true;
 
-      # desktopManager = {
-      #   xterm.enable = false;
-      #   xfce.enable = true;
-      # };
-      # displayManager.defaultSession = "xfce";
+      desktopManager = {
+        xterm.enable = false;
+        xfce.enable = true;
+      };
 
       videoDrivers = [ "nvidia" ];
       libinput.enable = true;
@@ -201,7 +196,7 @@
     auto-cpufreq.enable = true;
     dbus.enable = true;
     openssh.enable = true;
-    teamviewer.enable = true;
+    # teamviewer.enable = true;
     upower.enable = true;
   };
 
@@ -221,10 +216,16 @@
     enableNvidia = true;
   };
 
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg = {
+    portal = {
+      enable = true;
+      wlr.enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
+    
+    mime.defaultApplications = {
+      "application/pdf" = ["sioyek.desktop" "org.pwmt.zathura.desktop"];
+    };
   };
 
   # This value determines the NixOS release from which the default

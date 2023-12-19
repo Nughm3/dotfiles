@@ -1,6 +1,33 @@
-{ inputs, pkgs, ... }: {
-  home.username = "isaac";
-  home.homeDirectory = "/home/isaac";
+{ pkgs, ... }: {
+  home = {
+    username = "isaac";
+    homeDirectory = "/home/isaac";
+  };
+
+  gtk = {
+    enable = true;
+    font = {
+      name = "Inter";
+      package = pkgs.inter;
+    };
+    theme = {
+      name = "Arc-Lighter";
+      package = pkgs.arc-theme;
+    };
+    iconTheme = {
+      name = "Arc";
+      package = pkgs.arc-icon-theme;
+    };
+    cursorTheme = {
+      name = "Capitaine";
+      package = pkgs.capitaine-cursors;
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+  };
 
   programs = {
     direnv = {
@@ -19,15 +46,15 @@
       enableFishIntegration = true;
     };
 
-    gh = {
-      enable = true;
-      extensions = with pkgs; [ gh-cal gh-eco ];
-      settings.aliases = {
-        co = "pr checkout";
-        new = "repo create";
-        clone = "repo clone";
-      };
-    };
+    # gh = {
+    #   enable = true;
+    #   extensions = with pkgs; [ gh-cal gh-eco ];
+    #   settings.aliases = {
+    #     co = "pr checkout";
+    #     new = "repo create";
+    #     clone = "repo clone";
+    #   };
+    # };
 
     git = {
       enable = true;
@@ -152,6 +179,14 @@
             },
           },
 
+          mouse_bindings = {
+            {
+              event = { Up = { streak = 1, button = "Left" } },
+              mods = "NONE",
+              action = wezterm.action.Nop,
+            },
+          },
+
           window_close_confirmation = "NeverPrompt"
         }
       '';
@@ -191,11 +226,13 @@
     };
 
     firefox.enable = true;
+    # fish.enable = true;
     foot.enable = true;
     helix.enable = true;
     home-manager.enable = true;
     kakoune.enable = true;
     mpv.enable = true;
+    neovim.enable = true;
 
     bat.enable = true;
     btop.enable = true;
@@ -224,21 +261,22 @@
       allowUnfreePredicate = _: true;
       cudaSupport = true;
     };
-
-    overlays = [ inputs.rust-overlay.overlays.default ];
   };
 
   home.packages = with pkgs; [
     # Applications
+    anki
     aseprite
     discord
     drawio
     figma-linux
+    gvfs
     noisetorch
-    nyxt
+    # nyxt
     obsidian
     # ollama
     sqlitebrowser
+    xfce.thunar
     zotero
 
     # Command line utilities
@@ -253,10 +291,12 @@
     fend
     ffmpeg
     fx
+    github-cli
     glow
     httpie
     imagemagick
     just
+    kondo
     procs
     rm-improved
     sd
@@ -281,32 +321,33 @@
     nodePackages_latest.typescript-language-server
     nodePackages_latest.svelte-language-server
     marksman
-    pypy3
+    # pypy3
     python3Packages.pip
     python3Packages.python-lsp-server
-    (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
-      extensions = [
-        "cargo"
-        "clippy"
-        "llvm-tools"
-        "miri"
-        "rust-analyzer"
-        "rustc"
-        "rust-docs"
-        "rustfmt"
-        "rust-src"
-        "rust-std"
-      ];
+    # (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
+    #   extensions = [
+    #     "cargo"
+    #     "clippy"
+    #     "llvm-tools"
+    #     "miri"
+    #     "rust-analyzer"
+    #     "rustc"
+    #     "rust-docs"
+    #     "rustfmt"
+    #     "rust-src"
+    #     "rust-std"
+    #   ];
 
-      targets = [
-        "x86_64-unknown-linux-gnu"
-        "wasm32-unknown-unknown"
-        "thumbv7em-none-eabihf"
-      ];
-    }))
+    #   targets = [
+    #     "x86_64-unknown-linux-gnu"
+    #     "wasm32-unknown-unknown"
+    #     "thumbv7em-none-eabihf"
+    #   ];
+    # }))
+    sqlite
     tectonic
     texlab
-    texlive.combined.scheme-basic
+    texlive.combined.scheme-medium
     trunk
     zig
     zls
@@ -324,7 +365,6 @@
     cargo-audit
     cargo-binutils
     cargo-bloat
-    cargo-cache
     cargo-clone
     cargo-dist
     cargo-expand

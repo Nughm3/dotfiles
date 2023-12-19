@@ -12,8 +12,8 @@
   ],
   "modules-right": [
     "tray",
-    // "pulseaudio",
-    "wireplumber",
+    "pulseaudio",
+    // "wireplumber",
     "backlight",
     "battery",
     "network",
@@ -32,31 +32,31 @@
   "tray": {
     "spacing": 5
   },
-  // "pulseaudio": {
-  //   "scroll-step": 5,
-  //   "format": "{icon} {volume}%",
-  //   "format-muted": "󰖁",
-  //   "format-icons": {
-  //     "headphone": "󰋋",
-  //     "default": [
-  //       "󰕿 ",
-  //       "󰖀 ",
-  //       "󰕾 "
-  //     ]
-  //   },
-  //   "on-click": "pamixer --toggle-mute"
-  // },
-  "wireplumber": {
+  "pulseaudio": {
     "scroll-step": 5,
     "format": "{icon} {volume}%",
     "format-muted": "󰖁",
-    "format-icons": [
-      "󰕿 ",
-      "󰖀 ",
-      "󰕾 "
-    ],
+    "format-icons": {
+      "headphone": "󰋋",
+      "default": [
+        "󰕿 ",
+        "󰖀 ",
+        "󰕾 "
+      ]
+    },
     "on-click": "pamixer --toggle-mute"
   },
+  // "wireplumber": {
+  //   "scroll-step": 5,
+  //   "format": "{icon} {volume}%",
+  //   "format-muted": "󰖁",
+  //   "format-icons": [
+  //     "󰕿 ",
+  //     "󰖀 ",
+  //     "󰕾 "
+  //   ],
+  //   "on-click": "pamixer --toggle-mute"
+  // },
   "backlight": {
     "scroll-step": 5,
     "format": "{icon} {percent}%",
