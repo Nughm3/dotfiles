@@ -173,6 +173,13 @@
     #   pulse.enable = true;
     #   wireplumber.enable = true;
     # };
+
+    cron = {
+      enable = true;
+      systemCronJobs = [
+        "@reboot echo 96 > /sys/class/power_supply/BAT0/charge_control_end_threshold"
+      ];
+    };
     
     xserver = {
       enable = true;

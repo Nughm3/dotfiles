@@ -11,3 +11,16 @@ stow home/
 ```
 
 (use `stow -nv` to test run)
+
+## NixOS
+
+```bash
+git clone https://github.com/Nughm3/dotfiles
+cd dotfiles
+
+nixos-generate-config --root /mnt
+cp /mnt/etc/nixos/harware-configuration.nix ./nixos
+
+nixos-install --flake .#nixos
+reboot
+```
