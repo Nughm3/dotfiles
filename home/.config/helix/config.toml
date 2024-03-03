@@ -23,7 +23,7 @@ mode = { normal = "󰚄", insert = "󰏫", select = "󰩬" }
 
 [editor.lsp]
 display-messages = true
-display-inlay-hints = true
+# display-inlay-hints = true
 goto-reference-include-declaration = false
 
 [editor.cursor-shape]
@@ -48,6 +48,7 @@ tab = ":bn"
 S-tab = ":bp"
 space.x = ":bc"
 space.X = ":bc!"
+"+" = ":reflow"
 0 = "goto_line_start"
 "$" = "goto_line_end"
 "^" = "goto_first_nonwhitespace"

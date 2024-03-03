@@ -2,6 +2,14 @@
 # alias hx="helix"
 
 set -g fish_greeting
+set -g async_prompt_functions _pure_prompt_git
+set -g pure_enable_single_line_prompt true
+set -g pure_show_jobs true
+set -g pure_show_prefix_root_prompt true
+set -g pure_color_success green
+set -g pure_symbol_git_unpulled_commits "↓"
+set -g pure_symbol_git_unpushed_commits "↑"
+
 set -gx SHELL /run/current-system/sw/bin/fish
 set -gx EDITOR hx
 set -gx NIXPKGS_ALLOW_UNFREE 1
@@ -17,6 +25,7 @@ alias rc="$EDITOR ~/.config/fish/config.fish"
 alias so="source ~/.config/fish/config.fish"
 
 alias dotfiles-update="nix flake update ~/.dotfiles"
+alias profile-update="nix profile upgrade '.*'"
 alias home-config="$EDITOR ~/.dotfiles/home-manager/home.nix"
 alias nixos-config="$EDITOR ~/.dotfiles/nixos/configuration.nix"
 
@@ -46,8 +55,8 @@ function update
     home-update
 end
 
-alias e="$EDITOR"
-alias c="cargo"
+abbr e "$EDITOR"
+abbr c "cargo"
 
 alias ls="eza --icons --git"
 alias la="ls -la"
@@ -57,25 +66,26 @@ alias rm="rm -i"
 alias mv="mv -i"
 alias cp="cp -ir"
 alias mkdir="mkdir -p"
-alias md="mkdir"
+abbr md "mkdir"
 
-alias py="python3 -q"
-alias fd="fd -H"
+abbr py "python"
 alias watchexec="watchexec --clear=clear"
-alias wx="watchexec"
-alias yz="yazi"
-alias zj="zellij"
+abbr wx "watchexec"
+abbr yz "yazi"
+abbr zj "zellij"
 alias at='zellij attach (zellij list-sessions | fzf -0 -1)'
 alias ac='zellij attach --create (basename $PWD)'
 
-alias g="git"
-alias gs="git status"
-alias gd="git diff"
-alias gl="git log --oneline --graph"
-alias gu="git pull"
-alias gp="git push"
-alias gg='cd (git rev-parse --show-toplevel)'
-alias rt="git rev-parse --show-toplevel"
+abbr g "git"
+abbr ga "git add"
+abbr gc "git commit -am"
+abbr gd "git diff"
+abbr gl "git log --oneline --graph"
+abbr gs "git status"
+abbr gp "git push"
+abbr gu "git pull"
+abbr gg 'cd (git rev-parse --show-toplevel)'
+abbr rt "git rev-parse --show-toplevel"
 
 bind \cz 'fg 2>/dev/null; commandline -f repaint'
 
@@ -106,11 +116,9 @@ with open(\"$input_file\") as f:
 end
 
 if status is-interactive
-    zoxide init fish | source
-    starship init fish | source
-    direnv hook fish | source
-    zellij setup --generate-completion fish | source
-    # INHIBIT_THEME_HIST=1 theme.sh onedark
+    if command -q atuin; atuin init fish | source; end
+    if command -q direnv; direnv hook fish | source; end
+    if command -q starship; starship init fish | source; end
+    if command -q zellij; zellij setup --generate-completion fish | source; end
+    if command -q zoxide; zoxide init fish | source; end
 end
-
-set -gx AOC_SESSION_ID "53616c7465645f5f3a29c7bf6293a85f724d50449c6b074657eaf6cf9df6cd01d8d01476eb0f0874b5d97d83ed813fa53354d5c98774fc611ae2865cc95cf4af"

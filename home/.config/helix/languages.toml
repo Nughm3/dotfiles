@@ -7,7 +7,12 @@ name = "cpp"
 auto-format = true
 
 [[language]]
+name = "html"
+language-servers = ["vscode-html-language-server", "emmet-ls", "tailwind"]
+
+[[language]]
 name = "svelte"
+language-servers = ["svelteserver", "emmet-ls", "tailwind"]
 auto-format = true
 
 [[language]]
@@ -16,3 +21,5 @@ language-servers = ["astro-ls"]
 
 [language-server]
 astro-ls = { command = "astro-ls", args = ["stdio"] }
+emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
+tailwind = { command = "tailwindcss-language-server", args = ["--stdio"] }

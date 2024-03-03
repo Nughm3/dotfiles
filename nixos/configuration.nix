@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
   imports = [
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
     ./cachix.nix
   ];
 
@@ -14,6 +14,12 @@
 
     kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxPackages_xanmod_latest;
+  };
+
+  documentation = {
+    enable = true;
+    dev.enable = true;
+    man.enable = true;
   };
 
   environment.systemPackages = with pkgs; [
@@ -43,6 +49,10 @@
     pypy3
     python3
     rustup
+
+    # Documentation
+    man-pages
+    man-pages-posix
   ];
 
   fonts.packages = with pkgs; [
@@ -77,7 +87,7 @@
       nvidiaSettings = true;
     };
 
-    pulseaudio.enable = true;
+    # pulseaudio.enable = true;
   };
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -164,15 +174,15 @@
       };
     };
 
-    # pipewire = {
-    #   enable = true;
-    #   alsa = {
-    #     enable = true;
-    #     support32Bit = true;
-    #   };
-    #   pulse.enable = true;
-    #   wireplumber.enable = true;
-    # };
+    pipewire = {
+      enable = true;
+      alsa = {
+        enable = true;
+        support32Bit = true;
+      };
+      pulse.enable = true;
+      wireplumber.enable = true;
+    };
 
     cron = {
       enable = true;
@@ -192,8 +202,8 @@
 
       videoDrivers = [ "nvidia" ];
       libinput.enable = true;
-      layout = "us";
-      xkbVariant = "";
+      xkb.layout = "us";
+      xkb.variant = "";
     };
 
     udev.extraRules = ''
@@ -203,7 +213,7 @@
     auto-cpufreq.enable = true;
     dbus.enable = true;
     openssh.enable = true;
-    # teamviewer.enable = true;
+    teamviewer.enable = true;
     upower.enable = true;
   };
 
@@ -215,8 +225,17 @@
     isNormalUser = true;
     description = "Isaac Hung";
     shell = pkgs.fish;
-    extraGroups = [ "wheel" "networkmanager" "docker" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+      "dialout" # Connecting to serial ports
+      "adbusers" # Enable Android debugging
+    ];
   };
+
+  # Enable Android debugging
+  programs.adb.enable = true;
 
   virtualisation.docker = {
     enable = true;

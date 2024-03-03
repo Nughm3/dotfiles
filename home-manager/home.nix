@@ -4,6 +4,14 @@
     homeDirectory = "/home/isaac";
   };
 
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+
+    package = pkgs.breeze-icons;
+    name = "Breeze_Snow";
+  };
+
   gtk = {
     enable = true;
     font = {
@@ -19,8 +27,8 @@
       package = pkgs.arc-icon-theme;
     };
     cursorTheme = {
-      name = "Capitaine";
-      package = pkgs.capitaine-cursors;
+      name = "Breeze_Snow";
+      package = pkgs.breeze-icons;
     };
   };
 
@@ -30,9 +38,15 @@
   };
 
   programs = {
+    atuin = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
     direnv = {
       enable = true;
       enableFishIntegration = true;
+      nix-direnv.enable = true;
     };
 
     eza = {
@@ -46,15 +60,13 @@
       enableFishIntegration = true;
     };
 
-    # gh = {
-    #   enable = true;
-    #   extensions = with pkgs; [ gh-cal gh-eco ];
-    #   settings.aliases = {
-    #     co = "pr checkout";
-    #     new = "repo create";
-    #     clone = "repo clone";
-    #   };
-    # };
+    gh = {
+      enable = true;
+      settings.aliases = {
+        clone = "repo clone";
+        new = "repo create";
+      };
+    };
 
     git = {
       enable = true;
@@ -109,88 +121,10 @@
       };
     };
 
-    starship = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-
-    wezterm = {
-      enable = true;
-      extraConfig = ''
-        local wezterm = require("wezterm")
-        local mux = wezterm.mux
-
-        wezterm.on("gui-startup", function()
-          local tab, pane, window = mux.spawn_window{}
-          window:gui_window():maximize()
-        end)
-
-        return {
-          color_scheme = "OneDark (base16)",
-          default_prog = { "/run/current-system/sw/bin/fish" },
-
-          font = wezterm.font("JetBrainsMono Nerd Font Mono"),
-          font_size = 10.5,
-
-          use_fancy_tab_bar = false,
-          hide_tab_bar_if_only_one_tab = true,
-  
-          window_frame = {
-            active_titlebar_bg = "#1e222a",
-            inactive_titlebar_bg = "#1e222a",
-
-            inactive_titlebar_border_bottom = "#1e222a",
-            active_titlebar_border_bottom = "#1e222a",
-    
-            button_bg = "#1e222a",
-            button_hover_bg = "#353b45",
-          },
-
-          colors = {
-            tab_bar = {
-              background = "#282c34",
-      
-              active_tab = {
-                fg_color = "#c8ccd4",
-                bg_color = "#353b45",
-
-                intensity = "Bold",
-              },
-      
-              inactive_tab = {
-                fg_color = "#abb2bf",
-                bg_color = "#282c34",
-              },
-
-              inactive_tab_hover = {
-                fg_color = "#c8ccd4",
-                bg_color = "#3e4451",
-              },
-      
-              new_tab = {
-                fg_color = "#c8ccd4",
-                bg_color = "#282c34",
-              },
-
-              new_tab_hover = {
-                fg_color = "#1e222a",
-                bg_color = "#61afef",
-              }
-            },
-          },
-
-          mouse_bindings = {
-            {
-              event = { Up = { streak = 1, button = "Left" } },
-              mods = "NONE",
-              action = wezterm.action.Nop,
-            },
-          },
-
-          window_close_confirmation = "NeverPrompt"
-        }
-      '';
-    };
+    # starship = {
+    #   enable = true;
+    #   enableFishIntegration = true;
+    # };
 
     zathura = {
       enable = true;
@@ -226,21 +160,21 @@
     };
 
     firefox.enable = true;
+    # managed externally
     # fish.enable = true;
-    foot.enable = true;
+    # foot.enable = true;
     helix.enable = true;
     home-manager.enable = true;
-    kakoune.enable = true;
+    # kakoune.enable = true;
     mpv.enable = true;
     neovim.enable = true;
 
     bat.enable = true;
     btop.enable = true;
-    gh-dash.enable = true;
     jq.enable = true;
     pandoc.enable = true;
     ripgrep.enable = true;
-    taskwarrior.enable = true;
+    # taskwarrior.enable = true;
     tealdeer.enable = true;
     xplr.enable = true;
     yazi.enable = true;
@@ -255,6 +189,15 @@
     syncthing.enable = true;
   };
 
+  nix = {
+    package = pkgs.nixFlakes;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      auto-optimise-store = true;
+      warn-dirty = false;
+    };
+  };
+
   nixpkgs = {
     config = {
       allowUnfree = true;
@@ -265,7 +208,7 @@
 
   home.packages = with pkgs; [
     # Applications
-    anki
+    # anki
     aseprite
     discord
     drawio
@@ -274,54 +217,57 @@
     noisetorch
     # nyxt
     obsidian
-    # ollama
     sqlitebrowser
+    wezterm
     xfce.thunar
     zotero
 
     # Command line utilities
     acpi
     bore-cli
+    broot
     bun
     d2
     distrobox
     du-dust
-    eva
     fd
     fend
     ffmpeg
     fx
-    github-cli
     glow
     httpie
     imagemagick
     just
     kondo
+    nmap
     procs
     rm-improved
     sd
-    timewarrior
+    # timewarrior
     tokei
     watchexec
+    zola
 
     # Language tools
     bacon
     black
     bun
     deno
+    emmet-ls
     evcxr
     gopls
     lua
     # luajit
+    marksman
     nil
     nodejs
     nodePackages_latest.pnpm
     nodePackages_latest.prettier
-    nodePackages_latest.vscode-langservers-extracted
-    nodePackages_latest.typescript-language-server
     nodePackages_latest.svelte-language-server
-    marksman
-    # pypy3
+    nodePackages_latest.typescript-language-server
+    nodePackages_latest.vscode-langservers-extracted
+    poetry
+    pypy3
     python3Packages.pip
     python3Packages.python-lsp-server
     # (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
@@ -345,6 +291,7 @@
     #   ];
     # }))
     sqlite
+    tailwindcss-language-server
     tectonic
     texlab
     texlive.combined.scheme-medium
@@ -357,6 +304,7 @@
     hyperfine
     meson
     ninja
+    podman
     rr
     strace
     valgrind
