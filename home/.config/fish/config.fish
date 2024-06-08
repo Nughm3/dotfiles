@@ -15,7 +15,6 @@ set -gx EDITOR hx
 set -gx NIXPKGS_ALLOW_UNFREE 1
 set -gx NEXT_TELEMETRY_DISABLED
 set -gx ASTRO_TELEMETRY_DISABLED
-set -gx CARGO_UNSTABLE_GC true
 set -gx BEMENU_OPTS "-i -p run --fn 'JetBrainsMono Nerd Font 11' -H 30 --ch 16 --cw 2 --hp 8 --tb '#61afef' --tf '#282c34' --ff '#c8ccd4' --fb '#1e222a' --nb '#282c34' --nf '#61afef' --hb '#61afef' --hf '#282c34' --ab '#282c34' --af '#61afef' --scrollbar autohide"
 
 fish_add_path ~/.local/bin
@@ -25,7 +24,7 @@ alias rc="$EDITOR ~/.config/fish/config.fish"
 alias so="source ~/.config/fish/config.fish"
 
 alias dotfiles-update="nix flake update ~/.dotfiles"
-alias profile-update="nix profile upgrade '.*'"
+alias profile-update="nix profile upgrade '.*' --impure"
 alias home-config="$EDITOR ~/.dotfiles/home-manager/home.nix"
 alias nixos-config="$EDITOR ~/.dotfiles/nixos/configuration.nix"
 
@@ -45,7 +44,7 @@ function nixos-update
 end
 
 function nixos-clean
-    nix store gc
+    sudo nix-collect-garbage -d
     nix store optimise
 end
 
@@ -53,30 +52,33 @@ function update
     dotfiles-update
     nixos-update
     home-update
+    profile-update
 end
 
+abbr n nix
 abbr e "$EDITOR"
-abbr c "cargo"
+abbr c cargo
 
-alias ls="eza --icons --git"
-alias la="ls -la"
-alias lt="ls -T --git-ignore"
+alias ls "eza --icons --git"
+abbr la "ls -la"
+abbr lt "ls -T"
 
-alias rm="rm -i"
-alias mv="mv -i"
-alias cp="cp -ir"
-alias mkdir="mkdir -p"
-abbr md "mkdir"
+alias rm "rm -i"
+alias mv "mv -i"
+alias cp "cp -ir"
+alias mkdir "mkdir -p"
+abbr md mkdir
 
-abbr py "python"
-alias watchexec="watchexec --clear=clear"
-abbr wx "watchexec"
-abbr yz "yazi"
-abbr zj "zellij"
-alias at='zellij attach (zellij list-sessions | fzf -0 -1)'
-alias ac='zellij attach --create (basename $PWD)'
+abbr py python
+alias man batman
+alias watchexec "watchexec --clear=clear"
+abbr wx watchexec
+abbr yz yazi
+abbr zj zellij
+alias at 'zellij attach (zellij list-sessions -s | fzf -0 -1)'
+alias ac 'zellij attach --create (basename $PWD)'
 
-abbr g "git"
+abbr g git
 abbr ga "git add"
 abbr gc "git commit -am"
 abbr gd "git diff"
@@ -103,12 +105,12 @@ function aoc
     if not test -e $solution_file
         echo -e "\
 with open(\"$input_file\") as f:
-    data = f.read().splitlines()\n\n" > $solution_file
+    data = f.read().splitlines()\n\n" >$solution_file
     end
 
-    if test $EDITOR = "hx" -o $EDITOR = "helix"
+    if test $EDITOR = hx -o $EDITOR = helix
         $EDITOR $solution_file:(count < $solution_file)
-    else if test $EDITOR = "vim" -o $EDITOR = "nvim"
+    else if test $EDITOR = vim -o $EDITOR = nvim
         $EDITOR $solution_file +
     else
         $EDITOR $solution_file
@@ -116,9 +118,19 @@ with open(\"$input_file\") as f:
 end
 
 if status is-interactive
-    if command -q atuin; atuin init fish | source; end
-    if command -q direnv; direnv hook fish | source; end
-    if command -q starship; starship init fish | source; end
-    if command -q zellij; zellij setup --generate-completion fish | source; end
-    if command -q zoxide; zoxide init fish | source; end
+    if command -q atuin
+        atuin init fish --disable-up-arrow | source
+    end
+    if command -q direnv
+        direnv hook fish | source
+    end
+    if command -q starship
+        starship init fish | source
+    end
+    if command -q zellij
+        zellij setup --generate-completion fish | source
+    end
+    if command -q zoxide
+        zoxide init fish | source
+    end
 end

@@ -1,15 +1,13 @@
-theme = "onedark"
-# catppuccin_{frappe,latte,macchiato,mocha} everforest_{dark,light}
-# gruvbox nord{_light} one{dark,light} tokyonight{_storm}
+theme = "onedark-custom"
 
 [editor]
 scrolloff = 3
-scroll-lines = 4
+scroll-lines = 5
 middle-click-paste = false
 shell = ["bash", "-c"]
 line-number = "relative"
 cursorline = true
-idle-timeout = 0
+# completion-timeout = 5
 completion-trigger-len = 1
 completion-replace = true
 bufferline = "multiple"
@@ -17,13 +15,13 @@ color-modes = true
 
 [editor.statusline]
 left = ["mode", "file-name", "read-only-indicator", "file-modification-indicator"]
-center = ["version-control", "workspace-diagnostics"]
-right = ["diagnostics", "spacer", "selections", "primary-selection-length", "register", "spacer", "position", "position-percentage", "spacer", "file-type", "spinner"]
+# center = ["version-control", "workspace-diagnostics"]
+right = ["register", "spacer", "diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "file-type", "spinner"]
 mode = { normal = "󰚄", insert = "󰏫", select = "󰩬" }
 
 [editor.lsp]
 display-messages = true
-# display-inlay-hints = true
+display-inlay-hints = true
 goto-reference-include-declaration = false
 
 [editor.cursor-shape]

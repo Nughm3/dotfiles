@@ -1,0 +1,5 @@
+inherits = "onedark"
+
+"ui.bufferline.active" = { fg = "blue", modifiers = ["bold"] }
+"ui.virtual.jump-label" = { fg = "cyan" }
+"ui.statusline.select" = { fg = "black", bg = "yellow" }

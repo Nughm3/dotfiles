@@ -34,13 +34,18 @@
 
   qt = {
     enable = true;
-    platformTheme = "gtk";
+    platformTheme.name = "gtk";
   };
 
   programs = {
     atuin = {
       enable = true;
       enableFishIntegration = true;
+    };
+
+    bat = {
+      enable = true;
+      extraPackages = with pkgs.bat-extras; [ batman ];
     };
 
     direnv = {
@@ -104,22 +109,22 @@
       '';
     };
 
-    sioyek = {
-      enable = true;
-      bindings = {
-        "screen_up" = [ "<C-u>" "K" "<pgup>" ];
-        "screen_down" = [ "<C-d>" "J" "<pgdn>" ];
-        "new_window" = "<C-t>";
-        "fit_to_page_width" = "w";
-        "fit_to_page_width_smart" = "W";
-        "fit_to_page_height_smart" = "H";
-        "open_last_document" = "<A-o>";
-        "toggle_highlight" = "<C-h>";
-        "open_selected_url" = "Q";
-        "toggle_synctex" = "X";
+    # sioyek = {
+    #   enable = true;
+    #   bindings = {
+    #     "screen_up" = [ "<C-u>" "K" "<pgup>" ];
+    #     "screen_down" = [ "<C-d>" "J" "<pgdn>" ];
+    #     "new_window" = "<C-t>";
+    #     "fit_to_page_width" = "w";
+    #     "fit_to_page_width_smart" = "W";
+    #     "fit_to_page_height_smart" = "H";
+    #     "open_last_document" = "<A-o>";
+    #     "toggle_highlight" = "<C-h>";
+    #     "open_selected_url" = "Q";
+    #     "toggle_synctex" = "X";
         
-      };
-    };
+    #   };
+    # };
 
     # starship = {
     #   enable = true;
@@ -167,21 +172,22 @@
     home-manager.enable = true;
     # kakoune.enable = true;
     mpv.enable = true;
-    neovim.enable = true;
+    # neovim.enable = true;
 
-    bat.enable = true;
     btop.enable = true;
     jq.enable = true;
     pandoc.enable = true;
     ripgrep.enable = true;
-    # taskwarrior.enable = true;
     tealdeer.enable = true;
-    xplr.enable = true;
-    yazi.enable = true;
+    # xplr.enable = true;
+    # yazi.enable = true;
     yt-dlp.enable = true;
     zellij.enable = true;
 
-    go.enable = true;
+    go = {
+      enable = true;
+      goPath = ".go";
+    };
   };
 
   services = {
@@ -191,9 +197,9 @@
 
   nix = {
     package = pkgs.nixFlakes;
+
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
-      auto-optimise-store = true;
       warn-dirty = false;
     };
   };
@@ -202,19 +208,18 @@
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
-      cudaSupport = true;
+      # cudaSupport = true;
     };
   };
 
   home.packages = with pkgs; [
     # Applications
-    # anki
     aseprite
     discord
-    drawio
+    # drawio
     figma-linux
     gvfs
-    noisetorch
+    # noisetorch
     # nyxt
     obsidian
     sqlitebrowser
@@ -227,7 +232,6 @@
     bore-cli
     broot
     bun
-    d2
     distrobox
     du-dust
     fd
@@ -243,16 +247,15 @@
     procs
     rm-improved
     sd
-    # timewarrior
     tokei
     watchexec
-    zola
 
     # Language tools
     bacon
     black
     bun
     deno
+    dockerfile-language-server-nodejs
     emmet-ls
     evcxr
     gopls
@@ -261,13 +264,14 @@
     marksman
     nil
     nodejs
+    nodePackages_latest.bash-language-server
     nodePackages_latest.pnpm
     nodePackages_latest.prettier
     nodePackages_latest.svelte-language-server
     nodePackages_latest.typescript-language-server
     nodePackages_latest.vscode-langservers-extracted
-    poetry
-    pypy3
+    # poetry # FIXME
+    # pypy3 # FIXME
     python3Packages.pip
     python3Packages.python-lsp-server
     # (rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override {
@@ -296,10 +300,9 @@
     texlab
     texlive.combined.scheme-medium
     trunk
-    zig
-    zls
 
     # Development tools
+    cmake
     gdb
     hyperfine
     meson
@@ -317,17 +320,18 @@
     cargo-dist
     cargo-expand
     cargo-feature
-    cargo-geiger
+    # cargo-geiger # FIXME
     cargo-modules
     cargo-nextest
     cargo-outdated
     cargo-release
     cargo-show-asm
+    cargo-sweep
     cargo-udeps
     cargo-update
     cargo-watch
     cargo-workspaces
   ];
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
 }

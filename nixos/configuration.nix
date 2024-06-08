@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ lib, config, pkgs, ... }: {
   imports = [
     /etc/nixos/hardware-configuration.nix
     ./cachix.nix
@@ -12,8 +12,12 @@
       # efi.efiSysMountPoint = "/boot/efi";
     };
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxPackages_xanmod_latest;
+
+    extraModprobeConfig = ''
+      options iwlwifi 11n_disable=1 swcrypto=1
+    '';
   };
 
   documentation = {
@@ -22,52 +26,56 @@
     man.enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
-    # Commmand line
-    cachix
-    curl
-    efibootmgr
-    home-manager
-    kakoune
-    rsync
-    unzip
-    wget
-    wl-clipboard
-    xclip
-    zip
+  environment = {
+    systemPackages = with pkgs; [
+      # Commmand line
+      cachix
+      curl
+      efibootmgr
+      home-manager
+      neovim
+      rsync
+      unzip
+      wget
+      wl-clipboard
+      xclip
+      zip
 
-    # Development tools
-    clang-tools
-    cudatoolkit
-    gcc
-    linuxPackages_latest.perf
-    llvmPackages_latest.bintools
-    llvmPackages_latest.clang
-    llvmPackages_latest.llvm
-    mold
-    pkg-config
-    pypy3
-    python3
-    rustup
+      # Development tools
+      clang-tools
+      # cudatoolkit
+      gcc
+      hotspot
+      linuxPackages_latest.perf
+      lldb
+      llvmPackages_latest.bintools
+      llvmPackages_latest.clang
+      mold
+      pkg-config
+      python3
+      rustup
 
-    # Documentation
-    man-pages
-    man-pages-posix
-  ];
+      # Documentation
+      man-pages
+      man-pages-posix
+    ];
+
+    variables = {
+      LIBVA_DRIVER_NAME = "nvidia";
+    };
+  };
 
   fonts.packages = with pkgs; [
     google-fonts
     (nerdfonts.override {
       fonts = [
         "FiraCode"
-        "Hack"
         "Iosevka"
         "IosevkaTerm"
         "JetBrainsMono"
         "RobotoMono"
         "SourceCodePro"
         "Terminus"
-        "Ubuntu"
         "UbuntuMono"
         "VictorMono"
       ];
@@ -79,6 +87,13 @@
       enable = true;
       driSupport = true;
       driSupport32Bit = true;
+
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+        nvidia-vaapi-driver
+        egl-wayland
+      ];
     };
 
     nvidia = {
@@ -88,33 +103,54 @@
     };
 
     # pulseaudio.enable = true;
+    enableAllFirmware = true;
   };
 
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
+    
+    # inputMethod.enabled = "fcitx5";
   };
 
   networking = {
     hostName = "nixos";
-    networkmanager.enable = true;
+
+    wireless.iwd = {
+      enable = true;
+      settings = {
+        IPv6.Enabled = true;
+        Settings.AutoConnect = true;
+      };
+    };
+
+    # networkmanager.enable = true;
     firewall.enable = false;
   };
 
   nix = {
     package = pkgs.nixFlakes;
+
+    gc = {
+      automatic = true;
+      options = "--delete-older-than 30d";
+    };
+
+    optimise.automatic = true;
+
     settings = {
-      trusted-users = [ "root" "isaac" ];
+      trusted-users = [ "root" "@wheel" ];
       experimental-features = [ "nix-command" "flakes" ];
-      auto-optimise-store = true;
       warn-dirty = false;
     };
   };
@@ -123,7 +159,7 @@
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;
-      cudaSupport = true;
+      # cudaSupport = true;
     };
   };
 
@@ -139,9 +175,10 @@
         bemenu
         glib
         grim
-        imv
+        iwgtk
         light
         mako
+        nomacs
         pamixer
         playerctl
         pulsemixer
@@ -153,6 +190,11 @@
         xdg-utils
       ];
     };
+
+    # weylus = {
+    #   enable = true;
+    #   users = [ "isaac" ];
+    # };
 
     fish.enable = true;
     htop.enable = true;
@@ -190,18 +232,18 @@
         "@reboot echo 96 > /sys/class/power_supply/BAT0/charge_control_end_threshold"
       ];
     };
-    
+
+    libinput = {
+      enable = true;
+      touchpad.naturalScrolling = true;
+    };
+
     xserver = {
+      # TODO: disable
       enable = true;
       displayManager.startx.enable = true;
 
-      desktopManager = {
-        xterm.enable = false;
-        xfce.enable = true;
-      };
-
       videoDrivers = [ "nvidia" ];
-      libinput.enable = true;
       xkb.layout = "us";
       xkb.variant = "";
     };
@@ -213,13 +255,17 @@
     auto-cpufreq.enable = true;
     dbus.enable = true;
     openssh.enable = true;
-    teamviewer.enable = true;
     upower.enable = true;
   };
 
   sound.enable = true;
 
-  time.timeZone = "Asia/Hong_Kong";
+  systemd.services.nvidia-powerd.enable = lib.mkForce false;
+
+  time = {
+    timeZone = "Asia/Hong_Kong";
+    hardwareClockInLocalTime = true;
+  };
 
   users.users.isaac = {
     isNormalUser = true;
@@ -229,13 +275,13 @@
       "wheel"
       "networkmanager"
       "docker"
-      "dialout" # Connecting to serial ports
-      "adbusers" # Enable Android debugging
+      # "dialout" # Connecting to serial ports
+      # "adbusers" # Enable Android debugging
     ];
   };
 
   # Enable Android debugging
-  programs.adb.enable = true;
+  # programs.adb.enable = true;
 
   virtualisation.docker = {
     enable = true;
@@ -250,7 +296,7 @@
     };
     
     mime.defaultApplications = {
-      "application/pdf" = ["sioyek.desktop" "org.pwmt.zathura.desktop"];
+      "application/pdf" = ["org.pwmt.zathura.desktop" "sioyek.desktop"];
     };
   };
 
@@ -260,5 +306,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }
