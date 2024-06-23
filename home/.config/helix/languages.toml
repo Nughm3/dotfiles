@@ -8,11 +8,11 @@ auto-format = true
 
 [[language]]
 name = "html"
-language-servers = ["vscode-html-language-server", "emmet-ls", "tailwind"]
+language-servers = ["vscode-html-language-server", "emmet-ls", "tailwindcss-ls"]
 
 [[language]]
 name = "svelte"
-language-servers = ["svelteserver", "emmet-ls", "tailwind"]
+language-servers = ["svelteserver", "emmet-ls", "tailwindcss-ls"]
 auto-format = true
 
 [[language]]
@@ -22,4 +22,38 @@ language-servers = ["astro-ls"]
 [language-server]
 astro-ls = { command = "astro-ls", args = ["stdio"] }
 emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
-tailwind = { command = "tailwindcss-language-server", args = ["--stdio"] }
+
+[language-server.texlab.config.texlab]
+chktex = { onOpenAndSave = true, onEdit = true }
+forwardSearch.executable = "sioyek"
+forwardSearch.args = [
+  "--reuse-window",
+  "--inverse-search",
+  "texlab inverse-search -i \"%%1\" -l %%2",
+  "--forward-search-file",
+  "%f",
+  "--forward-search-line",
+  "%l",
+  "%p",
+]
+
+[language-server.texlab.config.texlab.build]
+forwardSearchAfter = true
+onSave = true
+# executable = "latexmk"
+# args = [
+#   "-pdf",
+#   "-interaction=nonstopmode",
+#   "-synctex=1",
+#   "-shell-escape",
+#   "%f"
+# ]
+executable = "tectonic"
+args = [
+  "-X",
+  "compile",
+  "%f",
+  "--synctex",
+  "--keep-logs",
+  "--keep-intermediates"
+]

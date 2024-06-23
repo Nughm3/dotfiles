@@ -6,7 +6,8 @@ dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT
 # riverctl map normal Super Return spawn "foot"
 riverctl map normal Super Return spawn "wezterm start fish"
 
-riverctl map normal Super B spawn "firefox"
+# riverctl map normal Super B spawn "firefox"
+riverctl map normal Super B spawn "brave"
 # riverctl map normal Super N spawn "nyxt"
 riverctl map normal Super O spawn "obsidian"
 riverctl map normal Super P spawn "bemenu-run -i -p run --fn 'JetBrainsMono Nerd Font 11' -H 30 --ch 16 --cw 2 --hp 8 --tb '#61afef' --tf '#282c34' --ff '#c8ccd4' --fb '#1e222a' --nb '#282c34' --nf '#61afef' --hb '#61afef' --hf '#282c34' --ab '#282c34' --af '#61afef' --scrollbar autohide"
@@ -15,7 +16,8 @@ riverctl map normal Super S spawn "sioyek"
 riverctl map normal Super Z spawn "zathura"
 
 riverctl map normal Super+Shift A spawn "aseprite"
-riverctl map normal Super+Shift B spawn "firefox --private-window"
+# riverctl map normal Super+Shift B spawn "firefox --private-window"
+riverctl map normal Super+Shift B spawn "brave --incognito"
 # riverctl map normal Super+Shift C spawn "clion"
 riverctl map normal Super+Shift D spawn "discord"
 riverctl map normal Super+Shift F spawn "Thunar"
@@ -30,7 +32,7 @@ riverctl map normal Super+Shift Z spawn "zotero"
 
 riverctl map normal Super C close
 riverctl map normal Super+Shift Q exit
-riverctl map normal Super Q spawn "~/.local/bin/power-bemenu.sh"
+riverctl map normal Super Q spawn "$HOME/.local/bin/power-bemenu.sh"
 
 riverctl map normal Super J focus-view next
 riverctl map normal Super K focus-view previous
@@ -68,13 +70,13 @@ riverctl map-pointer normal Super BTN_RIGHT resize-view
 riverctl map-pointer normal Super BTN_MIDDLE toggle-float
 
 for i in $(seq 1 9); do
-	tags=$((1 << ($i - 1)))
+	tags=$((1 << ("$i" - 1)))
 	# riverctl map normal Super $i set-focused-tags $tags
-	riverctl map normal Super+Shift $i set-view-tags $tags
-	riverctl map normal Super+Control $i toggle-focused-tags $tags
-	riverctl map normal Super+Shift+Control $i toggle-view-tags $tags
+	riverctl map normal Super+Shift "$i" set-view-tags $tags
+	riverctl map normal Super+Control "$i" toggle-focused-tags $tags
+	riverctl map normal Super+Shift+Control "$i" toggle-view-tags $tags
 
-	riverctl map normal Super $i spawn "python3 ~/.config/river/tag.py set $tags"
+	riverctl map normal Super "$i" spawn "python3 ~/.config/river/tag.py set $tags"
 done
 
 riverctl map normal Super BracketLeft spawn "python3 ~/.config/river/tag.py previous"

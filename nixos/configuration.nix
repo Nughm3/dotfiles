@@ -14,10 +14,6 @@
 
     # kernelPackages = pkgs.linuxPackages_latest;
     # kernelPackages = pkgs.linuxPackages_xanmod_latest;
-
-    extraModprobeConfig = ''
-      options iwlwifi 11n_disable=1 swcrypto=1
-    '';
   };
 
   documentation = {
@@ -43,14 +39,14 @@
 
       # Development tools
       clang-tools
-      # cudatoolkit
+      cudatoolkit
       gcc
       hotspot
       linuxPackages_latest.perf
       lldb
       llvmPackages_latest.bintools
       llvmPackages_latest.clang
-      mold
+      mold-wrapped
       pkg-config
       python3
       rustup
@@ -83,11 +79,8 @@
   ];
 
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-
       extraPackages = with pkgs; [
         vaapiVdpau
         libvdpau-va-gl
@@ -155,12 +148,10 @@
     };
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-      # cudaSupport = true;
-    };
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
+    cudaSupport = true;
   };
 
   programs = {
@@ -208,6 +199,12 @@
   };
 
   services = {
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+
     greetd = {
       enable = true;
       settings.default_session = {
@@ -255,6 +252,7 @@
     auto-cpufreq.enable = true;
     dbus.enable = true;
     openssh.enable = true;
+    printing.enable = true;
     upower.enable = true;
   };
 

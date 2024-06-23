@@ -109,22 +109,21 @@
       '';
     };
 
-    # sioyek = {
-    #   enable = true;
-    #   bindings = {
-    #     "screen_up" = [ "<C-u>" "K" "<pgup>" ];
-    #     "screen_down" = [ "<C-d>" "J" "<pgdn>" ];
-    #     "new_window" = "<C-t>";
-    #     "fit_to_page_width" = "w";
-    #     "fit_to_page_width_smart" = "W";
-    #     "fit_to_page_height_smart" = "H";
-    #     "open_last_document" = "<A-o>";
-    #     "toggle_highlight" = "<C-h>";
-    #     "open_selected_url" = "Q";
-    #     "toggle_synctex" = "X";
-        
-    #   };
-    # };
+    sioyek = {
+      enable = true;
+      bindings = {
+        "screen_up" = [ "<C-u>" "K" "<pgup>" ];
+        "screen_down" = [ "<C-d>" "J" "<pgdn>" ];
+        "new_window" = "<C-t>";
+        "fit_to_page_width" = "w";
+        "fit_to_page_width_smart" = "W";
+        "fit_to_page_height_smart" = "H";
+        "open_last_document" = "<A-o>";
+        "toggle_highlight" = "<C-h>";
+        "open_selected_url" = "Q";
+        "toggle_synctex" = "X";
+      };
+    };
 
     # starship = {
     #   enable = true;
@@ -204,17 +203,16 @@
     };
   };
 
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-      # cudaSupport = true;
-    };
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowUnfreePredicate = _: true;
+    cudaSupport = true;
   };
 
   home.packages = with pkgs; [
     # Applications
     aseprite
+    brave
     discord
     # drawio
     figma-linux
@@ -298,7 +296,7 @@
     tailwindcss-language-server
     tectonic
     texlab
-    texlive.combined.scheme-medium
+    (texlive.combine { inherit (texlive) scheme-medium biber bibtex biblatex latexmk chktex; })
     trunk
 
     # Development tools

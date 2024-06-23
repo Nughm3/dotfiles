@@ -20,11 +20,11 @@ cc = "cache -a"
 
 [build]
 # rustflags = ["-C", "link-arg=-fuse-ld=lld"]
-rustflags = ["-C", "link-arg=-fuse-ld=mold"]
-# rustflags = ["-C", "link-arg=-fuse-ld=mold", "-Z", "threads=8"] # note: experimental
+# rustflags = ["-C", "link-arg=-fuse-ld=mold"]
+rustflags = ["-C", "link-arg=-fuse-ld=mold", "-Z", "threads=8"] # note: experimental
 
-[unstable]
-codegen-backend = true
+# [unstable]
+# codegen-backend = true
 
-[profile.dev]
-codegen-backend = "cranelift"
+# [profile.dev]
+# codegen-backend = "cranelift" # requires component rustc-codegen-cranelift
