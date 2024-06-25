@@ -258,7 +258,10 @@
 
   sound.enable = true;
 
-  systemd.services.nvidia-powerd.enable = lib.mkForce false;
+  systemd.services = {
+    alsa-store.enable = lib.mkForce false;
+    nvidia-powerd.enable = lib.mkForce false;
+  };
 
   time = {
     timeZone = "Asia/Hong_Kong";
@@ -294,7 +297,7 @@
     };
     
     mime.defaultApplications = {
-      "application/pdf" = ["org.pwmt.zathura.desktop" "sioyek.desktop"];
+      "application/pdf" = ["sioyek.desktop" "org.pwmt.zathura.desktop"];
     };
   };
 
