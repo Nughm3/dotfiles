@@ -4,13 +4,13 @@
     homeDirectory = "/home/isaac";
   };
 
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
+  # home.pointerCursor = {
+  #   gtk.enable = true;
+  #   x11.enable = true;
 
-    package = pkgs.breeze-icons;
-    name = "Breeze_Snow";
-  };
+  #   name = "Capitaine Cursors - White";
+  #   package = pkgs.capitaine-cursors;
+  # };
 
   gtk = {
     enable = true;
@@ -26,10 +26,10 @@
       name = "Arc";
       package = pkgs.arc-icon-theme;
     };
-    cursorTheme = {
-      name = "Breeze_Snow";
-      package = pkgs.breeze-icons;
-    };
+    # cursorTheme = {
+    #   name = "Capitaine Cursors - White";
+    #   package = pkgs.capitaine-cursors;
+    # };
   };
 
   qt = {
@@ -111,17 +111,17 @@
 
     sioyek = {
       enable = true;
+
       bindings = {
-        "screen_up" = [ "<C-u>" "K" "<pgup>" ];
-        "screen_down" = [ "<C-d>" "J" "<pgdn>" ];
-        "new_window" = "<C-t>";
-        "fit_to_page_width" = "w";
-        "fit_to_page_width_smart" = "W";
-        "fit_to_page_height_smart" = "H";
-        "open_last_document" = "<A-o>";
-        "toggle_highlight" = "<C-h>";
-        "open_selected_url" = "Q";
-        "toggle_synctex" = "X";
+        screen_up = [ "<C-u>" "K" "<pgup>" ];
+        screen_down = [ "<C-d>" "J" "<pgdn>" ];
+        fit_to_page_width = "W";
+        fit_to_page_height = "H";
+      };
+
+      config = {
+        text_highlight_color = "#bad3fc";
+        synctex_highlight_color = "#b2fba5";
       };
     };
 
@@ -166,7 +166,7 @@
     firefox.enable = true;
     # managed externally
     # fish.enable = true;
-    # foot.enable = true;
+    foot.enable = true;
     helix.enable = true;
     home-manager.enable = true;
     # kakoune.enable = true;
@@ -212,32 +212,38 @@
   home.packages = with pkgs; [
     # Applications
     aseprite
-    brave
     discord
-    # drawio
-    figma-linux
+    drawio
+    # figma-linux
+    # gimp
     gvfs
+    inkscape
     # noisetorch
     # nyxt
     obsidian
     sqlitebrowser
-    wezterm
+    # wezterm
     xfce.thunar
-    zotero
+    # zotero
 
     # Command line utilities
     acpi
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+    ast-grep
     bore-cli
     broot
-    bun
+    devenv
     distrobox
+    dive
     du-dust
+    entr
     fd
     fend
     ffmpeg
     fx
     glow
     httpie
+    hugo
     imagemagick
     just
     kondo
@@ -245,8 +251,10 @@
     procs
     rm-improved
     sd
+    sq
     tokei
     watchexec
+    zola
 
     # Language tools
     bacon
@@ -296,16 +304,16 @@
     tailwindcss-language-server
     tectonic
     texlab
-    (texlive.combine { inherit (texlive) scheme-medium biber bibtex biblatex latexmk chktex; })
+    (texlive.combine { inherit (texlive) scheme-medium biber bibtex biblatex chktex latexmk; })
     trunk
 
     # Development tools
+    # binsider # TODO: waiting on nixpkgs
     cmake
     gdb
     hyperfine
     meson
     ninja
-    podman
     rr
     strace
     valgrind
@@ -314,12 +322,13 @@
     cargo-audit
     cargo-binutils
     cargo-bloat
-    cargo-clone
+    # cargo-clone # FIXME
     cargo-dist
     cargo-expand
     cargo-feature
     # cargo-geiger # FIXME
     cargo-modules
+    cargo-mutants
     cargo-nextest
     cargo-outdated
     cargo-release
@@ -327,7 +336,6 @@
     cargo-sweep
     cargo-udeps
     cargo-update
-    cargo-watch
     cargo-workspaces
   ];
 

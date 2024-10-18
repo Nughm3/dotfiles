@@ -24,12 +24,18 @@
 
   environment = {
     systemPackages = with pkgs; [
+      # Applications
+      font-manager
+      # via
+
       # Commmand line
       cachix
       curl
       efibootmgr
       home-manager
       neovim
+      nix-output-monitor
+      nvd
       rsync
       unzip
       wget
@@ -48,6 +54,7 @@
       llvmPackages_latest.clang
       mold-wrapped
       pkg-config
+      podman-compose
       python3
       rustup
 
@@ -89,11 +96,16 @@
       ];
     };
 
+    # keyboard.qmk.enable = true;
+
     nvidia = {
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       modesetting.enable = true;
       nvidiaSettings = true;
+      open = true;
     };
+
+    nvidia-container-toolkit.enable = true;
 
     # pulseaudio.enable = true;
     enableAllFirmware = true;
@@ -127,6 +139,7 @@
       };
     };
 
+    # wireless.enable = true;
     # networkmanager.enable = true;
     firewall.enable = false;
   };
@@ -134,10 +147,11 @@
   nix = {
     package = pkgs.nixFlakes;
 
-    gc = {
-      automatic = true;
-      options = "--delete-older-than 30d";
-    };
+    # Replaced by nh
+    # gc = {
+    #   automatic = true;
+    #   options = "--delete-older-than 30d";
+    # };
 
     optimise.automatic = true;
 
@@ -160,6 +174,18 @@
       lfs.enable = true;
     };
 
+    nh = {
+      enable = true;
+      clean.enable = true;
+      clean.extraArgs = "--keep-since 7d --keep 5";
+      flake = "/home/isaac/.dotfiles";
+    };
+
+    nix-ld = {
+      enable = true;
+      package = pkgs.nix-ld-rs;
+    };
+
     river = {
       enable = true;
       extraPackages = with pkgs; [
@@ -173,7 +199,6 @@
         pamixer
         playerctl
         pulsemixer
-        river
         slurp
         wayland
         wbg
@@ -189,6 +214,7 @@
 
     fish.enable = true;
     htop.enable = true;
+    localsend.enable = true;
     neovim.enable = true;
     waybar.enable = true;
   };
@@ -199,11 +225,11 @@
   };
 
   services = {
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
+    # avahi = {
+    #   enable = true;
+    #   nssmdns4 = true;
+    #   openFirewall = true;
+    # };
 
     greetd = {
       enable = true;
@@ -235,6 +261,14 @@
       touchpad.naturalScrolling = true;
     };
 
+    udev = {
+      extraRules = ''
+        ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /media"       
+      '';
+
+      # packages = [ pkgs.via ];
+    };
+
     xserver = {
       # TODO: disable
       enable = true;
@@ -245,18 +279,13 @@
       xkb.variant = "";
     };
 
-    udev.extraRules = ''
-      ACTION=="add", SUBSYSTEMS=="usb", SUBSYSTEM=="block", ENV{ID_FS_USAGE}=="filesystem", RUN{program}+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /media"       
-    '';
-
     auto-cpufreq.enable = true;
+    chrony.enable = true;
     dbus.enable = true;
     openssh.enable = true;
-    printing.enable = true;
+    # printing.enable = true;
     upower.enable = true;
   };
-
-  sound.enable = true;
 
   systemd.services = {
     alsa-store.enable = lib.mkForce false;
@@ -284,9 +313,10 @@
   # Enable Android debugging
   # programs.adb.enable = true;
 
-  virtualisation.docker = {
-    enable = true;
-    enableNvidia = true;
+  virtualisation = {
+    containers.enable = true;
+    docker.enable = true;
+    podman.enable = true;
   };
 
   xdg = {

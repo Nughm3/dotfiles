@@ -11,7 +11,7 @@ return {
   bold_brightens_ansi_colors = "No",
   default_prog = { "/run/current-system/sw/bin/fish" },
 
-  font = wezterm.font("JetBrainsMono Nerd Font Mono"),
+  font = wezterm.font("JetBrainsMono Nerd Font"),
   font_size = 10.5,
 
   use_fancy_tab_bar = false,

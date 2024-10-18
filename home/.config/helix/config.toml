@@ -7,7 +7,8 @@ middle-click-paste = false
 shell = ["bash", "-c"]
 line-number = "relative"
 cursorline = true
-# completion-timeout = 5
+auto-format = true
+completion-timeout = 5
 completion-trigger-len = 1
 completion-replace = true
 bufferline = "multiple"
@@ -63,13 +64,8 @@ C-l = "jump_view_right"
 # j.k = "normal_mode"
 C-backspace = "delete_word_backward"
 C-del = "delete_word_forward"
+S-tab = "move_parent_node_start"
 
-[keys.normal."\\"]
-b = ":sh zellij run -cf -- bacon"
-c = ":sh zellij run -f -- ~/.local/bin/cht.sh"
-f = ":sh zellij run -cf -- xplr"
-g = ":sh zellij run -cf -- gitui"
-h = ":sh zellij run -cf -- htop"
-m = ":sh zellij run -f -- make"
-n = ":sh zellij run -f -- cargo nextest run"
-space = ":sh zellij action toggle-floating-panes"
+[keys.select]
+tab = "extend_parent_node_end"
+S-tab = "extend_parent_node_start"

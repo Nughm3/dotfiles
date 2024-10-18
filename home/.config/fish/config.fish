@@ -29,23 +29,35 @@ alias home-config="$EDITOR ~/.dotfiles/home-manager/home.nix"
 alias nixos-config="$EDITOR ~/.dotfiles/nixos/configuration.nix"
 
 function home-update
-    home-manager switch \
-        --flake ~/.dotfiles#isaac@nixos \
-        --impure \
-        $argv
+    if command -q nh
+        nh home switch -- $argv
+    else
+        home-manager switch \
+            --flake ~/.dotfiles#isaac@nixos \
+            --impure \
+            $argv
+    end
 end
 
 function nixos-update
-    sudo nixos-rebuild switch \
-        --upgrade-all \
-        --flake ~/.dotfiles#nixos \
-        --impure \
-        $argv
+    if command -q nh
+        nh os switch -- --impure $argv
+    else
+        sudo nixos-rebuild switch \
+            --upgrade-all \
+            --flake ~/.dotfiles#nixos \
+            --impure \
+            $argv
+    end
 end
 
 function nixos-clean
-    sudo nix-collect-garbage -d
-    nix store optimise
+    if command -q nh
+        nh clean all
+    else
+        sudo nix-collect-garbage -d
+        nix store optimise
+    end
 end
 
 function update
@@ -81,6 +93,7 @@ alias ac 'zellij attach --create (basename $PWD)'
 abbr g git
 abbr ga "git add"
 abbr gc "git commit -am"
+abbr gca "git commit --amend --no-edit"
 abbr gd "git diff"
 abbr gl "git log --oneline --graph"
 abbr gs "git status"
@@ -132,5 +145,19 @@ if status is-interactive
     end
     if command -q zoxide
         zoxide init fish | source
+    end
+end
+
+# temp: conda adr
+if test -f /usr/bin/conda
+    eval /usr/bin/conda "shell.fish" hook $argv | source
+    set -gx SHELL /usr/bin/fish
+    # cd ~/Code/adr
+    # conda activate adr
+else
+    if test -f "/usr/etc/fish/conf.d/conda.fish"
+        . "/usr/etc/fish/conf.d/conda.fish"
+    else
+        set -x PATH /usr/bin $PATH
     end
 end
