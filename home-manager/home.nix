@@ -229,6 +229,7 @@
     # noisetorch
     # nyxt
     obsidian
+    p7zip
     qbittorrent
     sqlitebrowser
     # wezterm
