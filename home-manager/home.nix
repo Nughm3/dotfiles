@@ -57,7 +57,7 @@
     eza = {
       enable = true;
       git = true;
-      icons = true;
+      icons = "auto";
     };
 
     fzf = {
@@ -109,6 +109,14 @@
       '';
     };
 
+    obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-pipewire-audio-capture
+      ];
+    };
+
     sioyek = {
       enable = true;
 
@@ -130,33 +138,33 @@
     #   enableFishIntegration = true;
     # };
 
-    zathura = {
-      enable = true;
-      options = {
-        default-bg = "#282c34";
-        default-fg = "#353b45";
-        statusbar-fg = "#565c64";
-        statusbar-bg = "#3e4451";
-        inputbar-bg = "#282c34";
-        inputbar-fg = "#c8ccd4";
-        notification-bg = "#282c34";
-        notification-fg = "#c8ccd4";
-        notification-error-bg = "#282c34";
-        notification-error-fg = "#e06c75";
-        notification-warning-bg = "#282c34";
-        notification-warning-fg = "#e06c75";
-        highlight-color = "#e5c07b";
-        highlight-active-color = "#61afef";
-        completion-bg = "#353b45";
-        completion-fg = "#61afef";
-        completion-highlight-fg = "#c8ccd4";
-        completion-highlight-bg = "#61afef";
-        recolor-lightcolor = "#282c34";
-        recolor-darkcolor = "#b6bdca";
-        recolor = false;
-        recolor-keephue = false;
-      };
-    };
+    # zathura = {
+    #   enable = true;
+    #   options = {
+    #     default-bg = "#282c34";
+    #     default-fg = "#353b45";
+    #     statusbar-fg = "#565c64";
+    #     statusbar-bg = "#3e4451";
+    #     inputbar-bg = "#282c34";
+    #     inputbar-fg = "#c8ccd4";
+    #     notification-bg = "#282c34";
+    #     notification-fg = "#c8ccd4";
+    #     notification-error-bg = "#282c34";
+    #     notification-error-fg = "#e06c75";
+    #     notification-warning-bg = "#282c34";
+    #     notification-warning-fg = "#e06c75";
+    #     highlight-color = "#e5c07b";
+    #     highlight-active-color = "#61afef";
+    #     completion-bg = "#353b45";
+    #     completion-fg = "#61afef";
+    #     completion-highlight-fg = "#c8ccd4";
+    #     completion-highlight-bg = "#61afef";
+    #     recolor-lightcolor = "#282c34";
+    #     recolor-darkcolor = "#b6bdca";
+    #     recolor = false;
+    #     recolor-keephue = false;
+    #   };
+    # };
 
     zoxide = {
       enable = true;
@@ -179,7 +187,7 @@
     ripgrep.enable = true;
     tealdeer.enable = true;
     # xplr.enable = true;
-    # yazi.enable = true;
+    yazi.enable = true;
     yt-dlp.enable = true;
     zellij.enable = true;
 
@@ -195,7 +203,7 @@
   };
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
 
     settings = {
       experimental-features = [ "nix-command" "flakes" ];
@@ -221,6 +229,7 @@
     # noisetorch
     # nyxt
     obsidian
+    qbittorrent
     sqlitebrowser
     # wezterm
     xfce.thunar
@@ -245,9 +254,11 @@
     httpie
     hugo
     imagemagick
+    jpegoptim
     just
     kondo
     nmap
+    oxipng
     procs
     rm-improved
     sd
@@ -325,7 +336,7 @@
     # cargo-clone # FIXME
     cargo-dist
     cargo-expand
-    cargo-feature
+    # cargo-feature # FIXME
     # cargo-geiger # FIXME
     cargo-modules
     cargo-mutants
@@ -333,7 +344,7 @@
     cargo-outdated
     cargo-release
     cargo-show-asm
-    cargo-sweep
+    # cargo-sweep # FIXME
     cargo-udeps
     cargo-update
     cargo-workspaces

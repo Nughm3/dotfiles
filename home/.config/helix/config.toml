@@ -16,7 +16,7 @@ color-modes = true
 
 [editor.statusline]
 left = ["mode", "file-name", "read-only-indicator", "file-modification-indicator"]
-# center = ["version-control", "workspace-diagnostics"]
+center = ["version-control", "workspace-diagnostics"]
 right = ["register", "spacer", "diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "file-type", "spinner"]
 mode = { normal = "󰚄", insert = "󰏫", select = "󰩬" }
 

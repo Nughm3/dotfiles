@@ -145,7 +145,7 @@
   };
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
 
     # Replaced by nh
     # gc = {
