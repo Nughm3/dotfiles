@@ -4,21 +4,20 @@ theme = "onedark-custom"
 scrolloff = 3
 scroll-lines = 5
 middle-click-paste = false
-shell = ["bash", "-c"]
 line-number = "relative"
 cursorline = true
-auto-format = true
 completion-timeout = 5
 completion-trigger-len = 1
-completion-replace = true
 bufferline = "multiple"
 color-modes = true
+jump-label-alphabet = "fjdkslaghruvneicmwotybzxqp"
+end-of-line-diagnostics = "hint"
 
 [editor.statusline]
 left = ["mode", "file-name", "read-only-indicator", "file-modification-indicator"]
-center = ["version-control", "workspace-diagnostics"]
+# center = ["version-control", "workspace-diagnostics"]
 right = ["register", "spacer", "diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "file-type", "spinner"]
-mode = { normal = "󰚄", insert = "󰏫", select = "󰩬" }
+mode = { normal = "󰚄 Normal", insert = "󰏫 Insert", select = "󰩬 Select" }
 
 [editor.lsp]
 display-messages = true
@@ -35,10 +34,16 @@ hidden = false
 
 [editor.indent-guides]
 render = true
-character = "╎" # "▏", "╎", "┆", "┊"
+# character = "╎" # "▏", "╎", "┆", "┊"
+
+[editor.gutters]
+line-numbers.min-width = 1
 
 [editor.soft-wrap]
 enable = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
 
 [keys.normal]
 C-s = ":w"
@@ -48,7 +53,7 @@ S-tab = ":bp"
 space.x = ":bc"
 space.X = ":bc!"
 "+" = ":reflow"
-0 = "goto_line_start"
+"0" = "goto_line_start"
 "$" = "goto_line_end"
 "^" = "goto_first_nonwhitespace"
 "{" = "goto_prev_paragraph"

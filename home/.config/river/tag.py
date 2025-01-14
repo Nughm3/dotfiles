@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 
-import subprocess, sys
+import subprocess, sys, os
 
 try:
     action = sys.argv[1]
 except IndexError:
     sys.exit("no action specified")
+
+if not os.path.exists("/tmp/rivertag"):
+    with open("/tmp/rivertag", "w") as f:
+        f.write("1")
 
 with open("/tmp/rivertag") as f:
     tag = int(f.read())

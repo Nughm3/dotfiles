@@ -9,7 +9,7 @@ end)
 return {
   color_scheme = "OneDark (base16)",
   bold_brightens_ansi_colors = "No",
-  default_prog = { "/run/current-system/sw/bin/fish" },
+  default_prog = { "/usr/bin/fish" },
 
   font = wezterm.font("JetBrainsMono Nerd Font"),
   font_size = 10.5,
