@@ -2,7 +2,6 @@ theme = "onedark-custom"
 
 [editor]
 scrolloff = 3
-scroll-lines = 5
 middle-click-paste = false
 line-number = "relative"
 cursorline = true

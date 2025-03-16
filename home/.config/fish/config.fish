@@ -5,6 +5,7 @@ set -gx EDITOR helix
 set -g fish_greeting
 set -g async_prompt_functions _pure_prompt_git
 set -g pure_enable_single_line_prompt true
+set -g pure_enable_nixdevshell true
 set -g pure_show_jobs true
 set -g pure_show_prefix_root_prompt true
 set -g pure_color_success green
@@ -21,7 +22,7 @@ fish_add_path ~/.local/bin
 fish_add_path ~/.cargo/bin
 fish_add_path /usr/lib/rustup/bin
 
-if test "$DISPLAY" = ""; and test "$XDG_VTNR" = 1
+if test "$WAYLAND_DISPLAY" = ""; and test "$XDG_VTNR" = 1
     exec dbus-run-session river
 end
 
@@ -107,6 +108,7 @@ abbr gg 'cd (git rev-parse --show-toplevel)'
 abbr rt "git rev-parse --show-toplevel"
 
 bind \cz 'fg 2>/dev/null; commandline -f repaint'
+bind \ce '$EDITOR (fzf)'
 
 # function aoc
 #     set day (date +%-d)

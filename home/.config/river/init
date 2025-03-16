@@ -3,39 +3,24 @@
 # systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
 dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river &
 
-riverctl spawn "dinit --user --services-dir ~/.dinit.d"
+# riverctl spawn "dinit --user --services-dir ~/.dinit.d"
 
 # riverctl spawn "foot --server"
 # riverctl map normal Super Return spawn "footclient"
-riverctl map normal Super Return spawn "wezterm"
-# riverctl map normal Super Return spawn "ghostty"
+# riverctl map normal Super Return spawn "wezterm"
+riverctl spawn "ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
+riverctl map normal Super Return spawn "ghostty"
 
-riverctl map normal Super B spawn "firefox"
-# riverctl map normal Super B spawn "zen-browser"
-# riverctl map normal Super B spawn "brave"
-# riverctl map normal Super N spawn "nyxt"
+riverctl map normal Super B spawn "waterfox"
+riverctl map normal Super+Shift B spawn "waterfox --private-window"
 riverctl map normal Super O spawn "obsidian"
 riverctl map normal Super A spawn "aseprite"
 riverctl map normal Super P spawn "fuzzel"
-# riverctl map normal Super P spawn "bemenu-run -i -p run --fn 'JetBrainsMono Nerd Font 11' -H 30 --ch 16 --cw 2 --hp 8 --tb '#61afef' --tf '#282c34' --ff '#c8ccd4' --fb '#1e222a' --nb '#282c34' --nf '#61afef' --hb '#61afef' --hf '#282c34' --ab '#282c34' --af '#61afef' --scrollbar autohide"
 riverctl map normal Super S spawn "sioyek --new-window"
-# riverctl map normal Super T spawn "~/.local/bin/timew-bemenu.sh"
-# riverctl map normal Super Z spawn "zathura"
 
-riverctl map normal Super+Shift B spawn "firefox --private-window"
-# riverctl map normal Super+Shift B spawn "zen-browser --private-window"
-# riverctl map normal Super+Shift B spawn "brave --incognito"
-# riverctl map normal Super+Shift C spawn "clion"
 riverctl map normal Super+Shift D spawn "discord"
 riverctl map normal Super+Shift F spawn "Thunar"
-# riverctl map normal Super+Shift F spawn "figma-linux"
-riverctl map normal Super+Shift I spawn "idea"
-# riverctl map normal Super+Shift I spawn "idea-ultimate"
 riverctl map normal Super+Shift S spawn "sqlitebrowser"
-# riverctl map normal Super+Shift V spawn "code"
-# riverctl map normal Super+Shift Y spawn "pycharm-community"
-# riverctl map normal Super+Shift Y spawn "pycharm-professional"
-# riverctl map normal Super+Shift Z spawn "zotero"
 
 riverctl map normal Super C close
 riverctl map normal Super+Shift Q exit
@@ -73,7 +58,9 @@ riverctl map normal Super+Alt+Shift K resize vertical -100
 riverctl map normal Super+Alt+Shift L resize horizontal 100
 
 touchpad="pointer-1267-12440-ELAN1201:00_04F3:3098_Touchpad"
+riverctl input $touchpad scroll-factor 0.5
 riverctl input $touchpad natural-scroll enabled
+riverctl input $touchpad disable-while-typing disabled
 
 riverctl map-pointer normal Super BTN_LEFT move-view
 riverctl map-pointer normal Super BTN_RIGHT resize-view
@@ -99,7 +86,7 @@ riverctl map normal Super Space toggle-fullscreen
 
 riverctl map normal None Print spawn 'grim -g "$(slurp)" - | wl-copy'
 riverctl map normal Shift Print spawn 'grim -c - | wl-copy'
-riverctl map normal Control Print spawn "grim -g \"\$(slurp -p)\" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | wl-copy"
+riverctl map normal Control Print spawn 'grim -g "$(slurp -p)" -t ppm - | gm convert - -format "%[pixel:p{0,0}]" txt:- | awk "{print tolower(\$6)}" | wl-copy'
 
 riverctl map normal Super+Shift L spawn "waylock -init-color 0x1e222a -input-color 0x282c34 -fail-color 0xe06c75"
 riverctl map-switch normal lid close spawn "waylock -init-color 0x1e222a -input-color 0x282c34 -fail-color 0xe06c75"
@@ -108,10 +95,10 @@ riverctl declare-mode passthrough
 riverctl map normal Super F11 enter-mode passthrough
 riverctl map passthrough Super F11 enter-mode normal
 
-riverctl background-color 0x1E222A
-riverctl border-color-focused 0x61AFEF
-riverctl border-color-unfocused 0x282C34
-riverctl border-color-urgent 0xE06C75
+riverctl background-color 0x1e222a
+riverctl border-color-focused 0x61afef
+riverctl border-color-unfocused 0x282c34
+riverctl border-color-urgent 0xe06c75
 riverctl border-width 2
 riverctl xcursor-theme Breeze_Snow 12
 
@@ -134,20 +121,23 @@ for mode in normal locked; do
 	riverctl map $mode None XF86AudioPrev spawn 'playerctl previous'
 	riverctl map $mode None XF86AudioNext spawn 'playerctl next'
 
-	riverctl map $mode None XF86MonBrightnessUp spawn 'light -A 5'
-	riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 5'
+	riverctl map $mode None XF86MonBrightnessUp spawn 'brightnessctl set +5%'
+	riverctl map $mode None XF86MonBrightnessDown spawn 'brightnessctl set 5%-'
 done
 
 riverctl spawn "pipewire"
 riverctl spawn "pipewire-pulse"
 riverctl spawn "wireplumber"
-riverctl spawn "easyeffects --gapplication-service"
+# riverctl spawn "easyeffects --gapplication-service"
 
 riverctl spawn "wlr-randr --output eDP-1 --preferred --pos 1920,0"
 riverctl spawn "wlr-randr --output HDMI-A-1 --mode 1920x1080@74.973Hz --pos 0,0"
+riverctl spawn "brightnessctl set 50%"
+riverctl spawn "gammastep -l 22.3:114.2" # Hong Kong
 
 riverctl spawn "waybar"
-~/Pictures/wall/random-wallpaper.sh &
+# riverctl spawn "nm-applet"
 riverctl spawn "iwgtk --indicators"
 
+~/Pictures/wall/random-wallpaper.sh &
 echo 1 > /tmp/rivertag

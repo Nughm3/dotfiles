@@ -26,3 +26,33 @@
 2024/11/21 (08:56:35) | ===> btop++ v.1.4.0
 2024/11/21 (08:56:35) | ERROR: No tty detected!
 btop++ needs an interactive shell to run.
+
+2025/01/18 (18:23:05) | ===> btop++ v.1.4.0
+2025/01/18 (18:23:05) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+
+2025/02/15 (18:25:40) | ===> btop++ v.1.4.0
+2025/02/15 (18:25:40) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+
+2025/02/15 (18:26:39) | ===> btop++ v.1.4.0
+2025/02/15 (18:26:39) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+2025/02/15 (18:31:58) | WARNING: Failed to join _runner thread on exit!
+
+2025/02/21 (19:08:29) | ===> btop++ v.1.4.0
+2025/02/21 (19:08:29) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+2025/02/21 (19:08:31) | WARNING: Failed to join _runner thread on exit!
+
+2025/02/21 (19:08:40) | ===> btop++ v.1.4.0
+2025/02/21 (19:08:40) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+2025/02/21 (19:10:21) | WARNING: Failed to join _runner thread on exit!
+
+2025/02/23 (11:59:13) | ===> btop++ v.1.4.0
+2025/02/23 (11:59:13) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+2025/02/23 (12:00:21) | WARNING: Failed to join _runner thread on exit!
+
+2025/02/23 (12:05:27) | ===> btop++ v.1.4.0
+2025/02/23 (12:05:27) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+2025/02/23 (12:13:19) | WARNING: Failed to join _runner thread on exit!
+
+2025/02/23 (12:17:08) | ===> btop++ v.1.4.0
+2025/02/23 (12:17:08) | WARNING: NVML: Failed to get maximum GPU power draw, defaulting to 225W: Not Supported
+2025/02/23 (12:34:11) | WARNING: Failed to join _runner thread on exit!

@@ -65,3 +65,5 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+source /home/isaac/.config/broot/launcher/bash/br

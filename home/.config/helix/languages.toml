@@ -1,4 +1,8 @@
 [[language]]
+name = "astro"
+language-servers = ["astro-ls", "emmet-ls", "tailwindcss-ls"]
+
+[[language]]
 name = "c"
 auto-format = true
 
@@ -11,17 +15,29 @@ name = "html"
 language-servers = ["vscode-html-language-server", "emmet-ls", "tailwindcss-ls"]
 
 [[language]]
+name = "latex"
+language-servers = ["texlab", "harper-ls"]
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman", "markdown-oxide", "harper-ls"]
+
+[[language]]
 name = "svelte"
 language-servers = ["svelteserver", "emmet-ls", "tailwindcss-ls"]
 auto-format = true
 
-[[language]]
-name = "astro"
-language-servers = ["astro-ls", "emmet-ls", "tailwindcss-ls"]
+[language-server.astro-ls]
+command = "astro-ls"
+args = ["stdio"]
 
-[language-server]
-astro-ls = { command = "astro-ls", args = ["stdio"] }
-emmet-ls = { command = "emmet-ls", args = ["--stdio"] }
+[language-server.emmet-ls]
+command = "emmet-ls"
+args = ["--stdio"]
+
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
 
 [language-server.texlab.config.texlab]
 chktex = { onOpenAndSave = true, onEdit = true }

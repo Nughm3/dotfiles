@@ -1,0 +1,4 @@
+type            = process
+command         = /usr/bin/ollama serve
+smooth-recovery = true
+log-type        = buffer
