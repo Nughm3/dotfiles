@@ -1,6 +1,7 @@
 [user]
 	email = manhei5001@gmail.com
 	name = Isaac Hung
+	signingkey = 53CAC28E0BA7D368
 
 [alias]
 	st = status
@@ -47,7 +48,7 @@
 # 	syntax-theme = OneHalfDark
 
 [init]
-	defaultbranch = main
+	defaultBranch = main
 
 [credential "https://gist.github.com"]
 	helper = 
@@ -58,3 +59,9 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[fetch]
+	prune = true
+[commit]
+	gpgsign = false
+[tag]
+	gpgSign = false

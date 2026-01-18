@@ -1,3 +1,9 @@
 type            = process
-command         = /usr/bin/syncthing -logflags=0 -home=$HOME/.config/syncthing
-smooth-recovery = true
+command         = /usr/bin/syncthing serve --no-browser --no-restart --logflags=19 --home=$HOME/.config/syncthing  --logfile=$HOME/.local/share/dinit/syncthing.log
+working-dir     = $HOME/.config/syncthing
+term-signal     = TERM
+load-options    = export-passwd-vars
+log-type        = none
+smooth-recovery = false
+restart         = false
+stop-timeout    = 20.000

@@ -3,24 +3,29 @@
 # systemctl --user import-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &
 dbus-update-activation-environment DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river &
 
-# riverctl spawn "dinit --user --services-dir ~/.dinit.d"
-
 # riverctl spawn "foot --server"
 # riverctl map normal Super Return spawn "footclient"
 # riverctl map normal Super Return spawn "wezterm"
 riverctl spawn "ghostty --gtk-single-instance=true --quit-after-last-window-closed=false --initial-window=false"
-riverctl map normal Super Return spawn "ghostty"
+riverctl map normal Super Return spawn "ghostty +new-window"
 
-riverctl map normal Super B spawn "waterfox"
-riverctl map normal Super+Shift B spawn "waterfox --private-window"
+riverctl map normal Super B spawn "librewolf"
+riverctl map normal Super+Shift B spawn "librewolf --private-window"
+# riverctl map normal Super B spawn "zen"
+# riverctl map normal Super+Shift B spawn "zen --private-window"
+riverctl map normal Super E spawn "thunderbird"
 riverctl map normal Super O spawn "obsidian"
 riverctl map normal Super A spawn "aseprite"
 riverctl map normal Super P spawn "fuzzel"
 riverctl map normal Super S spawn "sioyek --new-window"
+riverctl map normal Super V spawn "code"
+# riverctl map normal Super V spawn "cursor"
 
 riverctl map normal Super+Shift D spawn "discord"
 riverctl map normal Super+Shift F spawn "Thunar"
-riverctl map normal Super+Shift S spawn "sqlitebrowser"
+# riverctl map normal Super+Shift S spawn "sqlitebrowser"
+riverctl map normal Super+Shift S spawn "beekeeper-studio"
+riverctl map normal Super+Shift I spawn "intellij-idea-ultimate-edition"
 
 riverctl map normal Super C close
 riverctl map normal Super+Shift Q exit
@@ -86,10 +91,11 @@ riverctl map normal Super Space toggle-fullscreen
 
 riverctl map normal None Print spawn 'grim -g "$(slurp)" - | wl-copy'
 riverctl map normal Shift Print spawn 'grim -c - | wl-copy'
-riverctl map normal Control Print spawn 'grim -g "$(slurp -p)" -t ppm - | gm convert - -format "%[pixel:p{0,0}]" txt:- | awk "{print tolower(\$6)}" | wl-copy'
+riverctl map normal Control Print spawn 'grim -g "$(slurp -p)" -t ppm - | gm convert - -format "%[pixel:p{0,0}]" txt:- | awk "{print tolower(\$6)}" | xargs | wl-copy'
+riverctl map normal Control+Shift Print spawn 'grim -c "$HOME/Pictures/Screenshots/$(date +%Y%m%d-%H%M%S-%N).png"'
 
-riverctl map normal Super+Shift L spawn "waylock -init-color 0x1e222a -input-color 0x282c34 -fail-color 0xe06c75"
-riverctl map-switch normal lid close spawn "waylock -init-color 0x1e222a -input-color 0x282c34 -fail-color 0xe06c75"
+riverctl map normal Super+Shift L spawn "waylock -init-color 0x000000 -input-color 0x282c34 -fail-color 0xe06c75"
+riverctl map-switch normal lid close spawn "waylock -init-color 0x000000 -input-color 0x282c34 -fail-color 0xe06c75"
 
 riverctl declare-mode passthrough
 riverctl map normal Super F11 enter-mode passthrough
@@ -130,14 +136,20 @@ riverctl spawn "pipewire-pulse"
 riverctl spawn "wireplumber"
 # riverctl spawn "easyeffects --gapplication-service"
 
-riverctl spawn "wlr-randr --output eDP-1 --preferred --pos 1920,0"
+riverctl spawn "syncthing"
+
+riverctl spawn "wlr-randr --output eDP-1 --preferred --pos 0,1080"
 riverctl spawn "wlr-randr --output HDMI-A-1 --mode 1920x1080@74.973Hz --pos 0,0"
 riverctl spawn "brightnessctl set 50%"
 riverctl spawn "gammastep -l 22.3:114.2" # Hong Kong
+# riverctl spawn "gammastep -l 33.8:-84.4" # Atlanta
 
 riverctl spawn "waybar"
-# riverctl spawn "nm-applet"
-riverctl spawn "iwgtk --indicators"
+riverctl spawn "nm-applet"
+# riverctl spawn "iwgtk --indicators"
+riverctl spawn "tailscale systray"
+riverctl spawn "blueman-applet"
+riverctl spawn "udiskie --appindicator"
 
 ~/Pictures/wall/random-wallpaper.sh &
 echo 1 > /tmp/rivertag
