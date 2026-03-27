@@ -1,0 +1,75 @@
+theme = "onedark-custom"
+
+[editor]
+scrolloff = 3
+middle-click-paste = false
+line-number = "relative"
+cursorline = true
+completion-timeout = 5
+completion-trigger-len = 1
+bufferline = "multiple"
+color-modes = true
+jump-label-alphabet = "fjdkslaghruvneicmwotybzxqp"
+end-of-line-diagnostics = "hint"
+
+[editor.statusline]
+left = ["mode", "file-name", "read-only-indicator", "file-modification-indicator"]
+# center = ["version-control", "workspace-diagnostics"]
+right = ["register", "spacer", "diagnostics", "spacer", "selections", "primary-selection-length", "spacer", "position", "position-percentage", "spacer", "file-type", "spinner"]
+mode = { normal = "󰚄 Normal", insert = "󰏫 Insert", select = "󰩬 Select" }
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = true
+goto-reference-include-declaration = false
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+# character = "╎" # "▏", "╎", "┆", "┊"
+
+[editor.gutters]
+line-numbers.min-width = 1
+
+[editor.soft-wrap]
+enable = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
+
+[keys.normal]
+C-s = ":w"
+C-q = ":qa"
+tab = ":bn"
+S-tab = ":bp"
+space.x = ":bc"
+space.X = ":bc!"
+"+" = ":reflow"
+"0" = "goto_line_start"
+"$" = "goto_line_end"
+"^" = "goto_first_nonwhitespace"
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+"%" = ["save_selection", "select_all"]
+C-w.c = "wclose"
+C-h = "jump_view_left"
+C-j = "jump_view_down"
+C-k = "jump_view_up"
+C-l = "jump_view_right"
+
+[keys.insert]
+# j.k = "normal_mode"
+C-backspace = "delete_word_backward"
+C-del = "delete_word_forward"
+S-tab = "move_parent_node_start"
+
+[keys.select]
+tab = "extend_parent_node_end"
+S-tab = "extend_parent_node_start"

@@ -1,0 +1,4 @@
+edition = "2024"
+hex_literal_case = "Lower"
+imports_granularity = "Crate"
+group_imports = "StdExternalCrate"

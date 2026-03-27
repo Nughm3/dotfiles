@@ -1,0 +1,76 @@
+[[language]]
+name = "astro"
+language-servers = ["astro-ls", "emmet-ls", "tailwindcss-ls"]
+
+[[language]]
+name = "c"
+auto-format = true
+
+[[language]]
+name = "cpp"
+auto-format = true
+
+[[language]]
+name = "html"
+language-servers = ["vscode-html-language-server", "emmet-ls", "tailwindcss-ls"]
+
+[[language]]
+name = "latex"
+language-servers = ["texlab", "harper-ls"]
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman", "markdown-oxide", "harper-ls"]
+
+[[language]]
+name = "svelte"
+language-servers = ["svelteserver", "emmet-ls", "tailwindcss-ls"]
+auto-format = true
+
+[language-server.astro-ls]
+command = "astro-ls"
+args = ["stdio"]
+
+[language-server.emmet-ls]
+command = "emmet-ls"
+args = ["--stdio"]
+
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
+[language-server.texlab.config.texlab]
+chktex = { onOpenAndSave = true, onEdit = true }
+forwardSearch.executable = "sioyek"
+forwardSearch.args = [
+  "--reuse-window",
+  "--inverse-search",
+  "texlab inverse-search -i \"%%1\" -l %%2",
+  "--forward-search-file",
+  "%f",
+  "--forward-search-line",
+  "%l",
+  "%p",
+]
+# forwardSearch = { executable = "zathura", args = ["--synctex-forward", "%l:%c:%f", "%p"] }
+
+[language-server.texlab.config.texlab.build]
+forwardSearchAfter = true
+onSave = true
+executable = "latexmk"
+args = [
+  "-pdf",
+  "-interaction=nonstopmode",
+  "-synctex=1",
+  "-shell-escape",
+  "%f"
+]
+# executable = "tectonic"
+# args = [
+#   "-X",
+#   "compile",
+#   "%f",
+#   "--synctex",
+#   "--keep-logs",
+#   "--keep-intermediates"
+# ]
