@@ -15,6 +15,7 @@
    "activate_on_single_click": true,
    "font": {
       "normal": {
+         "family": "JetBrainsMono Nerd Font",
          "size": 11
       }
    },
@@ -33,6 +34,10 @@
          "enabled": true
       }
    },
+   "fallbacks": [
+      "shortcuts:201a2712-a2c5-4a11-b46c-d4214934bf32",
+      "files:search"
+   ],
    "providers": {
       "core": {
          "entrypoints": {

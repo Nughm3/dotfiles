@@ -859,7 +859,7 @@ binds {
         quit skip-confirmation=true
     }
     Mod+Q {
-        spawn "~/.local/bin/power-fuzzel.sh"
+        spawn "~/.local/bin/power-vicinae.sh"
     }
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
