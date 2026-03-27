@@ -1,0 +1,11 @@
+[Unit]
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+# Atlanta
+ExecStart=/usr/bin/wlsunset -l 33.8 -L -84.4
+# Hong Kong
+# ExecStart=/usr/bin/wlsunset -l 22.3 -L 114.2
+Restart=on-failure
